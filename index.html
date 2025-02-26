@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حساب رسوم التخصصات</title>
+    <title>Study Falcon</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,24 +14,79 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            width: fit-content; /* يجعل العرض مناسبًا للمحتوى */
+            max-width: 70%; /* يمنع أن يصبح كبيرًا جدًا */
+            margin: 20px auto; /* يضعه في المنتصف */
+            flex-wrap: wrap;
+            text-align: center;
+            min-width: 250px; /* يمنعه من أن يكون صغيرًا جدًا */
         }
+
+        /* تصغير الشعار قليلاً ليكون متناسقاً */
         img {
-            width: 100px;
+            width: 80px;
             height: auto;
             border-radius: 10px;
         }
-        select, button {
-            padding: 10px;
+
+        /* جعل العناصر متجاوبة */
+        select, input {
+            padding: 12px;
             margin: 10px;
-            width: 300px; /* جعل القوائم بنفس العرض */
-            display: block; /* لجعلها تظهر تحت بعضها */
+            width: 90%;
+            max-width: 300px;
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* تحسين تصميم الاقتراحات */
+        #suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            width: 90%;
+            max-width: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestions div {
+            padding: 10px;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        #suggestions div:hover {
+            background: #f0f0f0;
+        }
+
+        /* تحسين تنسيق السعر */
         h3 {
             margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+            img {
+                width: 70px;
+            }
         }
     </style>
 </head>
@@ -42,111 +97,240 @@
         <h2>اختيار الجامعة والتخصص</h2>
     </header>
 
-    <!-- اختيار الجامعة -->
-    <label for="university">اختر الجامعة:</label>
-    <select id="university" onchange="updateLanguageOptions()">
-        <option value="">-- اختر الجامعة --</option>
-    </select>
+   <!-- اختيار الدولة -->
+<label for="country">اختر الدولة:</label>
+<select id="country" onchange="updateUniversities()">
+    <option value="">-- اختر الدولة --</option>
+</select>
 
-    <!-- اختيار اللغة -->
-    <label for="language">اختر اللغة:</label>
-    <select id="language" onchange="updateMajors()" disabled>
-        <option value="">-- اختر اللغة --</option>
-        <option value="Turkish">تركي</option>
-        <option value="English">إنجليزي</option>
-    </select>
-    
-    <!-- اختيار التخصص -->
-    <label for="major">اختر التخصص:</label>
-    <select id="major" onchange="showPrice()" disabled>
-        <option value="">-- اختر التخصص --</option>
-    </select>
-    
-    <!-- عرض السعر -->
-    <h3 id="price"></h3>
+<!-- اختيار الجامعة -->
+<label for="university">اختر الجامعة:</label>
+<select id="university" onchange="updateLanguageOptions()" disabled>
+    <option value="">-- اختر الجامعة --</option>
+</select>
+
+<!-- اختيار اللغة -->
+<label for="language">اختر اللغة:</label>
+<select id="language" onchange="updateMajors()" disabled>
+    <option value="">-- اختر اللغة --</option>
+    <option value="Turkish">تركي</option>
+    <option value="English">إنجليزي</option>
+</select>
+
+<!-- البحث عن التخصص -->
+<label for="searchMajor">ابحث عن التخصص:</label>
+<input type="text" id="searchMajor" placeholder="اكتب اسم التخصص" oninput="searchMajor()">
+<div id="suggestions"></div>
+
+<!-- عرض السعر -->
+<h3 id="price"></h3>
 
     <script>
         const data = {
-            "KENT UNIVERSITY": [
-                { name: "Dentistry (Scholarship)", language: "Turkish", price: 35000 },
-                { name: "Dentistry (Scholarship)", language: "English", price: 35000 },
-                { name: "Pharmacy (Scholarship)", language: "Turkish", price: 18000 },
-                { name: "Gastronomy and Culinary Arts", language: "Turkish", price: 2200 },
-                { name: "Gastronomy and Culinary Arts", language: "English", price: 2900 },
-                { name: "Interior Architecture", language: "Turkish", price: 2200 },
-                { name: "Digital Game Design", language: "English", price: 2900 },
-                { name: "Visual Communication Design", language: "English", price: 2900 },
-                { name: "Urban Design and Landscape Architecture", language: "Turkish", price: 2200 },
-                { name: "Radio, Television and Cinema", language: "Turkish", price: 2200 },
-                { name: "Economy and Finance", language: "English", price: 2900 },
-                { name: "International Relations", language: "English", price: 2900 },
-                { name: "Public Relations and Advertising", language: "Turkish", price: 2200 },
-                { name: "Business Administration", language: "Turkish", price: 2200 },
-                { name: "Business Administration", language: "English", price: 2900 },
-                { name: "Psychology", language: "Turkish", price: 2200 },
-                { name: "Psychology", language: "English", price: 2900 },
-                { name: "Political Science and Public Administration", language: "Turkish", price: 2200 },
-                { name: "Political Science and Public Administration", language: "English", price: 2900 },
-                { name: "Social Services", language: "Turkish", price: 2200 },
-                { name: "International Trade and Logistics", language: "Turkish", price: 2200 },
-                { name: "Healthcare Management", language: "Turkish", price: 2200 },
-                { name: "Nutrition and Dietetics", language: "Turkish", price: 2200 },
-                { name: "Nutrition and Dietetics", language: "English", price: 2900 },
-                { name: "Child Development", language: "Turkish", price: 2200 },
-                { name: "Physiotherapy and Rehabilitation", language: "Turkish", price: 2200 },
-                { name: "Physiotherapy and Rehabilitation", language: "English", price: 2900 },
-                { name: "Nursing", language: "Turkish", price: 2200 },
-                { name: "Nursing", language: "English", price: 2900 },
-                { name: "Midwifery", language: "Turkish", price: 2200 },
-                { name: "Speech and Language Therapy", language: "Turkish", price: 2200 },
-                { name: "Child Development", language: "Turkish", price: 1600 }, // من الصفحة 2 الجزء الاول
-                { name: "Operating Room Services", language: "Turkish", price: 1600 },
-                { name: "Oral and Dental Health", language: "Turkish", price: 1600 },
-                { name: "Electro neurophysiology", language: "Turkish", price: 1600 },
-                { name: "Physiotherapy", language: "Turkish", price: 1600 },
-                { name: "First Aid and Emergency", language: "Turkish", price: 1600 },
-                { name: "Anesthesia", language: "Turkish", price: 1600 },
-                { name: "Medical Documentation and Secretarial", language: "Turkish", price: 1600 },
-                { name: "Medical Imaging Technologies", language: "Turkish", price: 1600 },
-                { name: "Pharmacy Services", language: "Turkish", price: 1600 },
-                { name: "Pathology Laboratory Techniques", language: "Turkish", price: 1600 },
-                { name: "Medical Laboratory Techniques", language: "Turkish", price: 1600 },
-                { name: "Dental Prothesis Technology", language: "Turkish", price: 1600 },
-                { name: "Information Security Technology", language: "Turkish", price: 1600 },
-                { name: "Court Office Services", language: "Turkish", price: 1600 },
-                { name: "Computer Programming", language: "Turkish", price: 1600 },
-                { name: "Hair Care and Beauty Services", language: "Turkish", price: 1600 },
-                { name: "Occupational Health & Safety (Non-thesis)", language: "Turkish", price: 2500 }, // من الصفحة 2 الجزء الثاني
-                { name: "Healthcare Management (Non-thesis)", language: "Turkish", price: 2500 },
-                { name: "Healthcare Management (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Child Development (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Gastronomy and Culinary Arts (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Gastronomy and Culinary Arts (Non-thesis)", language: "Turkish", price: 3500 },
-                { name: "Nutrition and Dietetics (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Nutrition and Dietetics (Non-thesis)", language: "Turkish", price: 3500 },
-                { name: "International Business Administration (Non-thesis)", language: "Turkish", price: 3500 },
-                { name: "Business Management (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Political Science and International Relations (Thesis) (English)", language: "English", price: 3500 },
-                { name: "Clinical Psychology (Non-Thesis)", language: "Turkish", price: 3500 },
-                { name: "Clinical Psychology (Thesis)", language: "Turkish", price: 3500 },
-                { name: "Oral, Dental and Maxillofacial Surgery", language: "Turkish", price: 59750 },
-                { name: "Restorative Dentistry", language: "Turkish", price: 60000 },
-                { name: "Orthodontics", language: "Turkish", price: 60000 },
-                { name: "Pedodontics", language: "Turkish", price: 60000 },
-                { name: "Gastronomy and Culinary Arts", language: "Turkish", price: 54000 },
-                { name: "Turkish Preparation Course", language: "Turkish", price: 1080 }, // من الصفحة 3
-                { name: "English Preparation Course", language: "English", price: 2900 },
-            ],
+            "تركيا":{
+                "KENT UNIVERSITY": [
+                    { name: "Dentistry (Scholarship)", language: "Turkish", price: 35000 },
+                    { name: "Dentistry (Scholarship)", language: "English", price: 35000 },
+                    { name: "Pharmacy (Scholarship)", language: "Turkish", price: 18000 },
+                    { name: "Gastronomy and Culinary Arts", language: "Turkish", price: 2200 },
+                    { name: "Gastronomy and Culinary Arts", language: "English", price: 2900 },
+                    { name: "Interior Architecture", language: "Turkish", price: 2200 },
+                    { name: "Digital Game Design", language: "English", price: 2900 },
+                    { name: "Visual Communication Design", language: "English", price: 2900 },
+                    { name: "Urban Design and Landscape Architecture", language: "Turkish", price: 2200 },
+                    { name: "Radio, Television and Cinema", language: "Turkish", price: 2200 },
+                    { name: "Economy and Finance", language: "English", price: 2900 },
+                    { name: "International Relations", language: "English", price: 2900 },
+                    { name: "Public Relations and Advertising", language: "Turkish", price: 2200 },
+                    { name: "Business Administration", language: "Turkish", price: 2200 },
+                    { name: "Business Administration", language: "English", price: 2900 },
+                    { name: "Psychology", language: "Turkish", price: 2200 },
+                    { name: "Psychology", language: "English", price: 2900 },
+                    { name: "Political Science and Public Administration", language: "Turkish", price: 2200 },
+                    { name: "Political Science and Public Administration", language: "English", price: 2900 },
+                    { name: "Social Services", language: "Turkish", price: 2200 },
+                    { name: "International Trade and Logistics", language: "Turkish", price: 2200 },
+                    { name: "Healthcare Management", language: "Turkish", price: 2200 },
+                    { name: "Nutrition and Dietetics", language: "Turkish", price: 2200 },
+                    { name: "Nutrition and Dietetics", language: "English", price: 2900 },
+                    { name: "Child Development", language: "Turkish", price: 2200 },
+                    { name: "Physiotherapy and Rehabilitation", language: "Turkish", price: 2200 },
+                    { name: "Physiotherapy and Rehabilitation", language: "English", price: 2900 },
+                    { name: "Nursing", language: "Turkish", price: 2200 },
+                    { name: "Nursing", language: "English", price: 2900 },
+                    { name: "Midwifery", language: "Turkish", price: 2200 },
+                    { name: "Speech and Language Therapy", language: "Turkish", price: 2200 },
+                    { name: "Child Development", language: "Turkish", price: 1600 }, // من الصفحة 2 الجزء الاول
+                    { name: "Operating Room Services", language: "Turkish", price: 1600 },
+                    { name: "Oral and Dental Health", language: "Turkish", price: 1600 },
+                    { name: "Electro neurophysiology", language: "Turkish", price: 1600 },
+                    { name: "Physiotherapy", language: "Turkish", price: 1600 },
+                    { name: "First Aid and Emergency", language: "Turkish", price: 1600 },
+                    { name: "Anesthesia", language: "Turkish", price: 1600 },
+                    { name: "Medical Documentation and Secretarial", language: "Turkish", price: 1600 },
+                    { name: "Medical Imaging Technologies", language: "Turkish", price: 1600 },
+                    { name: "Pharmacy Services", language: "Turkish", price: 1600 },
+                    { name: "Pathology Laboratory Techniques", language: "Turkish", price: 1600 },
+                    { name: "Medical Laboratory Techniques", language: "Turkish", price: 1600 },
+                    { name: "Dental Prothesis Technology", language: "Turkish", price: 1600 },
+                    { name: "Information Security Technology", language: "Turkish", price: 1600 },
+                    { name: "Court Office Services", language: "Turkish", price: 1600 },
+                    { name: "Computer Programming", language: "Turkish", price: 1600 },
+                    { name: "Hair Care and Beauty Services", language: "Turkish", price: 1600 },
+                    { name: "Occupational Health & Safety (Non-thesis)", language: "Turkish", price: 2500 }, // من الصفحة 2 الجزء الثاني
+                    { name: "Healthcare Management (Non-thesis)", language: "Turkish", price: 2500 },
+                    { name: "Healthcare Management (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Child Development (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Gastronomy and Culinary Arts (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Gastronomy and Culinary Arts (Non-thesis)", language: "Turkish", price: 3500 },
+                    { name: "Nutrition and Dietetics (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Nutrition and Dietetics (Non-thesis)", language: "Turkish", price: 3500 },
+                    { name: "International Business Administration (Non-thesis)", language: "Turkish", price: 3500 },
+                    { name: "Business Management (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Political Science and International Relations (Thesis) (English)", language: "English", price: 3500 },
+                    { name: "Clinical Psychology (Non-Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Clinical Psychology (Thesis)", language: "Turkish", price: 3500 },
+                    { name: "Oral, Dental and Maxillofacial Surgery", language: "Turkish", price: 59750 },
+                    { name: "Restorative Dentistry", language: "Turkish", price: 60000 },
+                    { name: "Orthodontics", language: "Turkish", price: 60000 },
+                    { name: "Pedodontics", language: "Turkish", price: 60000 },
+                    { name: "Gastronomy and Culinary Arts", language: "Turkish", price: 54000 },
+                    { name: "Turkish Preparation Course", language: "Turkish", price: 1080 }, // من الصفحة 3
+                    { name: "English Preparation Course", language: "English", price: 2900 },
+                ],
+                "MEDIPOL UNIVERSITY": [
+                    { name: "International School of Medicine", language: "English", price: 17000 },
+                    { name: "School of Medicine", language: "Turkish", price: 17000 },
+                    { name: "School of Dentistry", language: "English", price: 17000 },
+                    { name: "School of Dentistry", language: "Turkish", price: 17000 },
+                    { name: "School of Pharmacy", language: "English", price: 17000 },
+                    { name: "School of Pharmacy", language: "Turkish", price: 17000 },
+                    { name: "School of Law", language: "Turkish", price: 17000 },
+                    { name: "Nursing", language: "English", price: 3150 },
+                    { name: "Nursing", language: "Turkish", price: 3150 },
+                    { name: "Physiotherapy and Rehabilitation", language: "English", price: 3150 },
+                    { name: "Physiotherapy and Rehabilitation", language: "Turkish", price: 3150 },
+                    { name: "Nutrition and Dietetics", language: "Turkish", price: 3150 },
+                    { name: "Health Management", language: "English", price: 3150 },
+                    { name: "Health Management", language: "Turkish", price: 3150 },
+                    { name: "Child Development", language: "Turkish", price: 3150 },
+                    { name: "Midwifery", language: "Turkish", price: 3150 },
+                    { name: "Social Services", language: "Turkish", price: 3150 },
+                    { name: "Speech and Language Therapy", language: "English", price: 3150 },
+                    { name: "Speech and Language Therapy", language: "Turkish", price: 3150 },
+                    { name: "Electrical-Electronic Engineering", language: "English", price: 3150 },
+                    { name: "Biomedical Engineering", language: "English", price: 3150 },
+                    { name: "Industrial Engineering", language: "English", price: 3150 },
+                    { name: "Computer Engineering", language: "English", price: 3150 },
+                    { name: "Civil Engineering", language: "English", price: 3150 },
+                    { name: "Business Administration", language: "English", price: 3150 },
+                    { name: "Economics and Finance", language: "English", price: 3150 },
+                    { name: "International Trade and Finance", language: "English", price: 3150 },
+                    { name: "Management Information Systems", language: "English", price: 3150 },
+                    { name: "Logistic Management", language: "English", price: 3150 },
+                    { name: "Human Resources Management", language: "Turkish", price: 3150 },
+                    { name: "Aviation Management", language: "Turkish", price: 3150 },
+                    { name: "Banking and Insurance", language: "Turkish", price: 3150 },
+                    { name: "Psychology", language: "English", price: 3150 },
+                    { name: "Psychology", language: "Turkish", price: 3150 },
+                    { name: "Political Science and International Relations", language: "English", price: 3150 },
+                    { name: "Political Science and Public Administration", language: "English", price: 3150 },
+                    { name: "Architecture", language: "English", price: 3150 },
+                    { name: "Architecture", language: "Turkish", price: 3150 },
+                    { name: "Industrial Design", language: "Turkish", price: 3150 },
+                    { name: "Interior Architecture and Environmental Design", language: "English", price: 3150 },
+                    { name: "Visual Communication Design", language: "Turkish", price: 3150 },
+                    { name: "Turkish Music Art", language: "Turkish", price: 3150 },
+                    { name: "Gastronomy and Culinary Arts", language: "Turkish", price: 3150 },
+                    { name: "Urban Design and Landscape Architecture", language: "Turkish", price: 3150 },
+                    { name: "Psychological Counselling and Guidance", language: "English", price: 3150 },
+                    { name: "English Teaching", language: "English", price: 3150 },
+                    { name: "Primary Mathematics Teaching", language: "Turkish", price: 3150 },
+                    { name: "Special Education Teaching", language: "Turkish", price: 3150 },
+                    { name: "Pre-School Teaching", language: "Turkish", price: 3150 },
+                    { name: "Public Relations and Advertising", language: "English", price: 3150 },
+                    { name: "Media and Visual Arts", language: "Turkish", price: 3150 },
+                    { name: "Nutrition and Dietetics", language: "Turkish", price: 3150 },
+                    { name: "Child Development", language: "Turkish", price: 3150 },
+                    { name: "Physiotherapy and Rehabilitation", language: "Turkish", price: 3150 },
+                    { name: "Oral and Dental Health", language: "Turkish", price: 3150 },
+                    { name: "Operating Room Services", language: "Turkish", price: 3150 },
+                    { name: "Anesthesia", language: "English", price: 3600 },
+                    { name: "Anesthesia", language: "Turkish", price: 3150 },
+                    { name: "Dental Prosthesis Technology", language: "Turkish", price: 3600 },
+                    { name: "Dialysis", language: "Turkish", price: 3150 },
+                    { name: "Pharmacy Services", language: "Turkish", price: 3150 },
+                    { name: "Electroneurophysiology", language: "Turkish", price: 3150 },
+                    { name: "Physiotherapy", language: "English", price: 3150 },
+                    { name: "Physiotherapy", language: "Turkish", price: 3150 },
+                    { name: "First and Emergency Aid", language: "English", price: 3600 },
+                    { name: "First and Emergency Aid", language: "Turkish", price: 3150 },
+                    { name: "Occupational Health and Safety", language: "Turkish", price: 3150 },
+                    { name: "Audiometry", language: "Turkish", price: 3150 },
+                    { name: "Opticianry", language: "Turkish", price: 3150 },
+                    { name: "Pathology Laboratory Techniques", language: "Turkish", price: 3150 },
+                    { name: "Radiotherapy", language: "Turkish", price: 3150 },
+                    { name: "Management of Health Institutions", language: "Turkish", price: 3150 },
+                    { name: "Medical Documentation and Secretary", language: "Turkish", price: 3150 },
+                    { name: "Medical Imaging Techniques", language: "Turkish", price: 3150 },
+                    { name: "Medical Laboratory Techniques", language: "Turkish", price: 3150 },
+                    { name: "Computer Programming", language: "Turkish", price: 3150 },
+                    { name: "Biomedical Device Technology", language: "Turkish", price: 3150 },
+                    { name: "Interior Design", language: "Turkish", price: 3150 },
+                    { name: "Construction Technology", language: "Turkish", price: 3150 },
+                    { name: "Architectural Restoration", language: "Turkish", price: 3150 },
+                    { name: "Civil Aviation Transportation Management", language: "Turkish", price: 3150 },
+                    { name: "Banking and Insurance", language: "Turkish", price: 3150 },
+                    { name: "Foreign Trade", language: "Turkish", price: 3150 },
+                    { name: "Public Relations and Publicity", language: "Turkish", price: 3150 },
+                    { name: "Human Resources Management", language: "Turkish", price: 3150 },
+                    { name: "Business Administration", language: "Turkish", price: 3150 },
+                    { name: "Logistics", language: "Turkish", price: 3150 },
+                    { name: "Finance", language: "Turkish", price: 3150 },
+                    { name: "Accounting and Taxation", language: "Turkish", price: 3150 },
+                    { name: "Radio and Television Programming", language: "Turkish", price: 3150 },
+                    { name: "Civil Aviation Cabin Services", language: "Turkish", price: 3150 },
+                    { name: "Social Services", language: "Turkish", price: 3150 },
+                    { name: "Sports Management", language: "Turkish", price: 3150 },
+                    { name: "Applied English and Translation", language: "English", price: 3150 },
+                    { name: "Turkish Foundation School", language: "Turkish", price: 1250 },
+                ],
+            },
+            "ماليزيا":{
+
+            },
+            "المجر":{
+                
+            }
         };
 
-        // تعبئة قائمة الجامعات
-        function populateUniversities() {
-            let universitySelect = document.getElementById("university");
-            for (let uni in data) {
+            // تعبئة قائمة الدول
+            function populateCountries() {
+            let countrySelect = document.getElementById("country");
+            for (let country in data) {
                 let option = document.createElement("option");
-                option.value = uni;
-                option.textContent = uni;
-                universitySelect.appendChild(option);
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            }
+        }
+
+        // تحديث الجامعات عند اختيار دولة
+        function updateUniversities() {
+            let country = document.getElementById("country").value;
+            let universitySelect = document.getElementById("university");
+            universitySelect.innerHTML = '<option value="">-- اختر الجامعة --</option>';
+            universitySelect.disabled = true;
+            document.getElementById("language").disabled = true;
+
+            if (country && data[country]) {
+                for (let uni in data[country]) {
+                    let option = document.createElement("option");
+                    option.value = uni;
+                    option.textContent = uni;
+                    universitySelect.appendChild(option);
+                }
+                universitySelect.disabled = false;
             }
         }
 
@@ -154,43 +338,60 @@
         function updateLanguageOptions() {
             let languageSelect = document.getElementById("language");
             languageSelect.disabled = false;
-            languageSelect.selectedIndex = 0; // إعادة تعيين اللغة إلى القيمة الافتراضية
-            updateMajors(); // تحديث قائمة التخصصات
+            languageSelect.selectedIndex = 0;
+            updateMajors();
         }
 
-        // تحديث قائمة التخصصات بناءً على الجامعة واللغة المختارة
-        function updateMajors() {
-            let majorSelect = document.getElementById("major");
+        // البحث وإظهار الاقتراحات عند الكتابة
+        function searchMajor() {
+            let searchText = document.getElementById("searchMajor").value.toLowerCase();
+            let country = document.getElementById("country").value;
             let university = document.getElementById("university").value;
             let language = document.getElementById("language").value;
-            majorSelect.innerHTML = '<option value="">-- اختر التخصص --</option>';
-            majorSelect.disabled = true;
-            document.getElementById("price").textContent = "";
+            let suggestionsBox = document.getElementById("suggestions");
+            let priceBox = document.getElementById("price");
 
-            if (university && data[university] && language) {
-                data[university].forEach(major => {
-                    if (major.language === language) {
-                        let option = document.createElement("option");
-                        option.value = major.name;
-                        option.textContent = major.name;
-                        majorSelect.appendChild(option);
-                    }
-                });
-                majorSelect.disabled = false;
+            suggestionsBox.innerHTML = "";
+            suggestionsBox.style.display = "none";
+            priceBox.textContent = ""; // مسح السعر عند البحث الجديد
+
+            if (country && university && language && searchText) {
+                let filteredMajors = data[country][university].filter(major =>
+                    major.language === language && major.name.toLowerCase().includes(searchText)
+                );
+
+                if (filteredMajors.length > 0) {
+                    suggestionsBox.style.display = "block";
+                    filteredMajors.forEach(major => {
+                        let div = document.createElement("div");
+                        div.textContent = major.name;
+                        div.onclick = () => selectMajor(major);
+                        suggestionsBox.appendChild(div);
+                    });
+                } else {
+                    priceBox.textContent = "لم يتم العثور على تخصص مطابق.";
+                }
             }
         }
 
-        // عرض السعر عند اختيار التخصص
-        function showPrice() {
-            let university = document.getElementById("university").value;
-            let language = document.getElementById("language").value;
-            let major = document.getElementById("major").value;
-            let selectedMajor = data[university]?.find(m => m.name === major && m.language === language);
-            document.getElementById("price").textContent = selectedMajor ? `السعر: ${selectedMajor.price} $` : "";
+
+        // عند اختيار تخصص
+        function selectMajor(major) {
+            document.getElementById("searchMajor").value = major.name;
+            document.getElementById("suggestions").style.display = "none";
+            document.getElementById("price").textContent = `السعر: ${major.price} $`;
         }
 
-        // تعبئة قائمة الجامعات عند تحميل الصفحة
-        populateUniversities();
+        // تعبئة قائمة الدول عند تحميل الصفحة
+        populateCountries();
+
+        // إخفاء الاقتراحات عند النقر خارجها
+        document.addEventListener("click", function (event) {
+        let suggestionsBox = document.getElementById("suggestions");
+        if (!document.getElementById("searchMajor").contains(event.target)) {
+            suggestionsBox.style.display = "none";
+        }
+        });
     </script>
 
 </body>
