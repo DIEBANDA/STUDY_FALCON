@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #333;
+      color: white;
+    }
+    .login-container {
+      padding: 2em;
+      background: #444;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+    input {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+      <h2>تسجيل الدخول</h2>
+      <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <button onclick="login()">تسجيل الدخول</button>
+      <div class="error" id="error"></div>
+  </div>
+  <script>
+      const validCredentials = {
+          email: "admin@example.com",
+          password: "admin123"
+      };
+  
+      function login() {
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const error = document.getElementById("error");
+          
+          if (email === validCredentials.email && password === validCredentials.password) {
+              window.location.href = "index.html"; // الصفحة الرئيسية
+          } else {
+              error.textContent = "بيانات الدخول غير صحيحة";
+          }
+      }
+  
+      document.addEventListener("keydown", function(event) {
+          if (event.key === "Enter") {
+              login();
+          }
+      });
+</script>
+</body>
+</html>
