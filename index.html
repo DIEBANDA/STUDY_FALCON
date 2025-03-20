@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +11,37 @@
             align-items: center;
             gap: 10px;
             font-family: Arial, sans-serif;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .button-container button:active {
+            transform: translateY(0);
+        }
+
+        #searchByMajor, #searchByUniversity {
+            display: none;
         }
 
         header {
@@ -37,37 +67,156 @@
             border-radius: 10px;
         }
 
-        select,
-        input {
+        #country {
             padding: 12px;
-            margin: 4px;
-            width: 90%;
-            max-width: 400px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-sizing: border-box;
+            width: 250px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+            text-align: right;
         }
 
-        /* تنسيق حقل البحث والاقتراحات */
+        #degree {
+            padding: 12px;
+            width: 150px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        #language {
+            padding: 12px;
+            width: 400px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: right;
+        }
+        #university {
+            padding: 12px;
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        #searchMajor {
+            padding: 12px;
+            width: 375px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: right;
+            background-color: #f9f9f9
+        }
+
+        #countryUniversity {
+            padding: 12px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        #majorUniversity {
+            padding: 12px;
+            width: 378px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        #degreeUniversity {
+            padding: 12px;
+            width: 150px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        #languageUniversity {
+            padding: 12px;
+            width: 405px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        .budget-slider {
+            display: flex;
+            flex-direction: row; /* ترتيب العناصر أفقيًا */
+            gap: 10px;
+            align-items: flex-start; /* محاذاة العناصر إلى اليسار */
+            margin: 20px 0;
+            width: 400px; /* عرض إجمالي للشريطين والمسافة بينهما */
+        }
+
+        .budget-slider .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: calc(50% - 10px); /* عرض كل مجموعة شريط (190px) */
+        }
+
+        .budget-slider input[type="range"] {
+            width: 100%; /* تصغير العرض إلى النصف */
+            accent-color: #007bff; /* تغيير لون الشريط إلى الأزرق */
+        }
+
+        .budget-slider label {
+            font-weight: bold;
+            color: #007bff; /* تغيير لون النص إلى الأزرق */
+        }
+
+        .budget-slider span {
+            color: #007bff; /* تغيير لون القيمة إلى الأزرق */
+        }
+
         .search-container {
             position: relative;
-            width: 90%;
-            max-width: 400px;
-            margin: 0
+            width: 400px;
+            margin: 0;
         }
 
-        /* تنسيق اقتراحات البحث */
+        /* تحسين زر البحث */
+        #searchByUniversity button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 10px; /* تباعد من العناصر الأعلى */
+        }
+
+        #searchByUniversity button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        #searchByUniversity button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+
         #suggestions {
             position: absolute;
             background: white;
             border: 1px solid #ccc;
             width: 100%;
             top: calc(100% + 5px);
-            /* تلتصق بحقل البحث مع مسافة صغيرة */
             left: 0;
             max-height: 200px;
             overflow-y: auto;
@@ -80,31 +229,131 @@
         #suggestions div {
             padding: 12px;
             cursor: pointer;
-            text-align: right;
+            text-align: center;
             font-size: 14px;
         }
 
-        #suggestions div:hover {
+        #suggestions div:hover{
             background: #f0f0f0;
         }
 
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            width: 90%;
-            max-width: 400px;
+        /* قواعد لعرض الاقتراحات في "البحث عن الجامعة" */
+        #suggestionsMajor {
+            position: absolute; /* العنصر يظهر فوق العناصر الأخرى */
+            background: white; /* خلفية بيضاء */
+            border: 1px solid #ccc; /* إطار رمادي */
+            width: 100%; /* عرض العنصر بنسبة 100% من الحاوية الأم */
+            top: calc(100% + 5px); /* تباعد من الأعلى */
+            left: 0; /* محاذاة لليسار */
+            max-height: 200px; /* أقصى ارتفاع للعنصر */
+            overflow-y: auto; /* إظهار شريط التمرير عند الحاجة */
+            display: none; /* العنصر مخفي بشكل افتراضي */
+            z-index: 1000; /* العنصر يظهر فوق العناصر الأخرى */
+            border-radius: 5px; /* زوايا مدورة */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
         }
 
-        .filters input,
-        .filters select {
-            padding: 12px;
-            flex-basis: calc(33.33% - 5px);
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            text-align: right;
+        #suggestionsMajor div {
+            padding: 12px; /* تباعد داخلي */
+            cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+            text-align: right; /* محاذاة النص لليمين */
+            font-size: 14px; /* حجم الخط */
+        }
+
+        #suggestionsMajor div:hover {
+            background: #f0f0f0; /* تغيير لون الخلفية عند التحويم */
+        }
+
+        #universityList {
+            position: static; /* العنصر يتبع التدفق الطبيعي للصفحة */
+            width: 100%; /* عرض العنصر بنسبة 100% من الحاوية الأم */
+            max-width: 400px; /* أقصى عرض للعنصر */
+            margin-top: 10px; /* تباعد من الأعلى */
+            background: white; /* خلفية بيضاء */
+            border: 1px solid #ccc; /* إطار رمادي */
+            border-radius: 5px; /* زوايا مدورة */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+            max-height: 200px; /* أقصى ارتفاع للعنصر */
+            overflow-y: auto; /* إظهار شريط التمرير عند الحاجة */
+            display: none; /* العنصر مخفي بشكل افتراضي */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* حركة ظهور سلسة */
+            transform: translateY(-10px); /* تحريك العنصر لأعلى قليلاً */
+        }
+
+        #universityList div {
+            padding: 12px; /* تباعد داخلي */
+            cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+            text-align: right; /* محاذاة النص لليمين */
+            font-size: 14px; /* حجم الخط */
+            border-bottom: 1px solid #eee; /* خط فاصل بين العناصر */
+            transition: background-color 0.2s ease; /* حركة سلسة عند التحويم */
+            color: black; /* لون النص أسود */
+        }
+
+        #universityList div:last-child {
+            border-bottom: none; /* إزالة الخط الفاصل من العنصر الأخير */
+        }
+
+        #universityList div:hover {
+            background: #f0f0f0;
+        }
+
+        #universityList div strong {
+            color: #007bff; /* لون النص أزرق */
+        }
+
+        #universityList div span {
+            color: #28a745; /* لون النص أخضر */
+            font-weight: bold; /* نص سميك */
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            width: 90%;
+            max-width: 400px;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+            width: 400px;
+            margin: 0;
+        }
+
+        .search-container .clear-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #000000;
+            display: none;
+        }
+
+        .search-container .clear-btn:hover {
+            color: #333;
+        }
+
+        .search-container input:not(:placeholder-shown) + .clear-btn {
+            display: block;
+        }
+
+        .search-container input:focus + .clear-btn {
+            display: block;
+        }
+
+        .search-container input {
+            transition: width 0.3s ease;
+        }
+
+        .search-container input:focus {
+            width: 100%;
+        }
+
+        .search-container input:not(:focus) {
+            width: 80%;
         }
 
         @media (max-width: 600px) {
@@ -119,43 +368,38 @@
                 width: 70px;
             }
 
-            .filters {
-                flex-direction: column;
+            #country, #degree, #university, #language, #searchMajor,
+            #countryUniversity, #majorUniversity, #degreeUniversity, #languageUniversity, #minBudget, #maxBudget {
+                width: 375;
             }
 
-            .filters input,
-            .filters select {
-                flex-basis: 100%;
-                margin: 5px 0;
-            }
-
-            #suggestions {
+            .search-container {
                 width: 100%;
-                max-width: 100%;
             }
         }
     </style>
 </head>
-
 <body>
 
+<!-- زرين للتبديل بين البحث عن التخصص والبحث عن الجامعة -->
+<div class="button-container">
+    <button onclick="showSearchByMajor()">البحث عن تخصص</button>
+    <button onclick="showSearchByUniversity()">البحث عن جامعة</button>
+</div>
+
+<!-- البحث عن التخصص -->
+<div id="searchByMajor">
     <header>
         <img src="Study Falcon.jpg" alt="شعار الموقع">
-        <h2>اختيار الجامعة والتخصص</h2>
+        <h2>البحث عن التخصص</h2>
     </header>
 
-    <!-- اختيار الدولة -->
-    <label for="country">اختر الدولة:</label>
-    <select id="country" onchange="updateUniversities()">
-        <option value="">-- اختر الدولة --</option>
-    </select>
-
-    <!-- الفلاتر: الحد الأدنى، الحد الأقصى، Degree -->
-    <div class="filters">
-        <input type="number" id="minPrice" placeholder="الحد الأدنى">
-        <input type="number" id="maxPrice" placeholder="الحد الأقصى">
+    <!-- اختيار الدولة والدرجة -->
+    <div class="container">
+        <select id="country" onchange="updateUniversities()">
+            <option value="">-- اختر الدولة --</option>
+        </select>
         <select id="degree">
-            <option value="">اختر الدرجة</option>
             <option value="Bachelor">Bachelor</option>
             <option value="Master">Master</option>
             <option value="Doctorate">Doctorate</option>
@@ -164,28 +408,87 @@
     </div>
 
     <!-- اختيار الجامعة -->
-    <label for="university">اختر الجامعة:</label>
-    <select id="university" onchange="updateLanguageOptions()" disabled>
-        <option value="">-- اختر الجامعة --</option>
-    </select>
+    <div>
+        <select id="university" onchange="updateLanguageOptions()" disabled>
+            <option value="">-- اختر الجامعة --</option>
+        </select>
+    </div>
 
     <!-- اختيار اللغة -->
-    <label for="language">اختر اللغة:</label>
-    <select id="language" onchange="updateMajors()" disabled>
-        <option value="">-- اختر اللغة --</option>
-        <option value="Turkish">تركي</option>
-        <option value="English">إنجليزي</option>
-    </select>
+     <div>
+        <select id="language" onchange="searchMajor()" disabled>
+            <option value="">-- اختر اللغة --</option>
+        </select>
+    </div>
 
     <!-- البحث عن التخصص -->
     <div class="search-container">
-        <label for="searchMajor">ابحث عن التخصص:</label>
-        <input type="text" id="searchMajor" placeholder="اكتب اسم التخصص" oninput="searchMajor()">
+        <input type="text" id="searchMajor" placeholder="اكتب اسم التخصص" oninput="searchMajor()" disabled>
+        <span class="clear-btn" onclick="clearSearch()">×</span>
         <div id="suggestions"></div>
     </div>
 
     <!-- عرض السعر -->
     <h3 id="price"></h3>
+
+    <!-- تسجيل الخروج -->
+    <button onclick="logout()">تسجيل الخروج</button>
+</div>
+
+<!-- البحث عن الجامعة -->
+<div id="searchByUniversity" style="display: none;">
+    <header>
+        <img src="Study Falcon.jpg" alt="شعار الموقع">
+        <h2>البحث عن جامعة</h2>
+    </header>
+
+    <!-- اختيار الدولة -->
+    <div class="container">
+        <select id="countryUniversity" onchange="updateMajorsForUniversitySearch()">
+            <option value="">-- اختر الدولة --</option>
+        </select>
+            <!-- اختيار الدرجة العلمية -->
+        <select id="degreeUniversity">
+            <option value="Bachelor">Bachelor</option>
+            <option value="Master">Master</option>
+            <option value="Doctorate">Doctorate</option>
+            <option value="Associate">Associate</option>
+        </select>
+    </div>
+
+    <!-- اختيار التخصص -->
+    <div class="search-container">
+        <input type="text" id="majorUniversity" placeholder="اكتب اسم التخصص" oninput="updateLanguageOptionsForUniversitySearch()">
+        <span class="clear-btn" onclick="clearUniversitySearch()">×</span>
+    </div>
+
+    <!-- اختيار اللغة -->
+    <select id="languageUniversity">
+        <option value="">-- اختر اللغة --</option>
+        <option value="Turkish">تركي</option>
+        <option value="English">إنجليزي</option>
+    </select>
+
+    <!-- اختيار الميزانية -->
+    <div class="budget-slider">
+        <div class="slider-group">
+            <label for="minBudget">أقل قيمة (بالدولار):</label>
+            <input type="range" id="minBudget" min="0" max="50000" value="0" oninput="updateBudget()">
+            <span id="minBudgetValue">0</span>
+        </div>
+        <div class="slider-group">
+            <label for="maxBudget">أقصى قيمة (بالدولار):</label>
+            <input type="range" id="maxBudget" min="0" max="50000" value="50000" oninput="updateBudget()">
+            <span id="maxBudgetValue">50000</span>
+        </div>
+    </div>
+
+    <!-- زر البحث -->
+    <button onclick="searchUniversities()">بحث</button>
+
+    <!-- عرض قائمة الجامعات -->
+    <div id="universityList" style="margin-top: 20px;"></div>
+</div>
 
     <script>
         const data = {
@@ -260,9 +563,9 @@
                     { name: "Turkish Preparation Course - دورة التحضير للغة التركية", language: "Turkish", price: 1080, degree: "Bachelor" }, // من الصفحة 3
                     { name: "English Preparation Course - دورة التحضير للغة الإنجليزية", language: "English", price: 2900, degree: "Bachelor" },
                 ],
-                "MEDIPOL UNIVERSITY": [
+                "جامعة ميدبول": [
                     { name: "International School of Medicine - المدرسة الدولية للطب", language: "English", price: 17000, degree: "Bachelor" },
-                    { name: "School of Medicine - كلية الطب", language: "Turkish", price: 17000, degree: "Bachelor" },
+                    { name: "School of Medicine - كلية الطب بشري" , language: "Turkish", price: 17000, degree: "Bachelor" },
                     { name: "School of Dentistry - كلية طب الأسنان", language: "English", price: 17000, degree: "Bachelor" },
                     { name: "School of Dentistry - كلية طب الأسنان", language: "Turkish", price: 17000, degree: "Bachelor" },
                     { name: "School of Pharmacy - كلية الصيدلة", language: "English", price: 17000, degree: "Bachelor" },
@@ -357,6 +660,101 @@
                     { name: "Applied English and Translation - اللغة الإنجليزية التطبيقية والترجمة", language: "English", price: 3150, degree: "Bachelor" },
                     { name: "Turkish Foundation School - المدرسة التحضيرية التركية", language: "Turkish", price: 1250, degree: "Bachelor" },
                 ],
+                "جامعة اسطنبول كينت ": [
+                    { name: "Dentistry - طب بشري", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Dentistry - طب الأسنان", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Dentistry - طب الأسنان", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Engineering - الهندسة الصناعية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Computer Engineering - هندسة الحاسوب", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Civil Engineering - الهندسة المدنية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Civil Engineering - الهندسة المدنية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Architecture - العمارة", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Architecture - العمارة", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Nursing - التمريض", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Nursing - التمريض", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Economics - الاقتصاد", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Economics - الاقتصاد", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Graphic Design - التصميم الجرافيكي", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Visual Arts - الفنون البصرية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Visual Arts - الفنون البصرية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Master" },
+                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "Turkish", price: "not found", degree: "Master" },
+                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "Turkish", price: "not found", degree: "Master" }
+                ],
+                "اسطنبول جيديك": [
+                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Engineering - الهندسة الصناعية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Computer Engineering - هندسة الحاسوب", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Civil Engineering - الهندسة المدنية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Civil Engineering - الهندسة المدنية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Architecture - العمارة", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Architecture - العمارة", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Nursing - التمريض", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Nursing - التمريض", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Economics - الاقتصاد", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Economics - الاقتصاد", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Graphic Design - التصميم الجرافيكي", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Visual Arts - الفنون البصرية", language: "English", price: "not found", degree: "Bachelor" },
+                    { name: "Visual Arts - الفنون البصرية", language: "Turkish", price: "not found", degree: "Bachelor" },
+                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Associate" },
+                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Associate" },
+                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Master" },
+                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "Turkish", price: "not found", degree: "Master" },
+                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "English", price: "not found", degree: "Master" },
+                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "Turkish", price: "not found", degree: "Master" }
+                ],
             },
             "ماليزيا": {
 
@@ -365,147 +763,21 @@
 
             }
         };
-
-    
         // تعطيل الحقول عند التحميل
-        document.getElementById("minPrice").disabled = true;
-        document.getElementById("maxPrice").disabled = true;
+        document.getElementById("majorUniversity").disabled = true;
+        document.getElementById("languageUniversity").disabled = true;
         document.getElementById("university").disabled = true;
         document.getElementById("language").disabled = true;
         document.getElementById("searchMajor").disabled = true;
-    
+
         // تعيين الدرجة الافتراضية إلى Bachelor
         document.getElementById("degree").value = "Bachelor";
-    
-        // تفعيل حقلي السعر عند اختيار الدولة
-        function updateUniversities() {
-            let country = document.getElementById("country").value;
-            let minPriceInput = document.getElementById("minPrice");
-            let maxPriceInput = document.getElementById("maxPrice");
-    
-            if (country) {
-                minPriceInput.disabled = false;
-                maxPriceInput.disabled = false;
-            } else {
-                minPriceInput.disabled = true;
-                maxPriceInput.disabled = true;
-                document.getElementById("university").disabled = true;
-                document.getElementById("language").disabled = true;
-                document.getElementById("searchMajor").disabled = true;
-            }
-    
-            resetFields(["university", "language", "searchMajor", "price"]);
-        }
-    
-        // تصفية الجامعات بناءً على الفئة السعرية
-        function checkPriceInputs() {
-            let minPrice = parseFloat(document.getElementById("minPrice").value);
-            let maxPrice = parseFloat(document.getElementById("maxPrice").value);
-            let universitySelect = document.getElementById("university");
-            let country = document.getElementById("country").value;
-    
-            if (!isNaN(minPrice) && !isNaN(maxPrice) && country) {
-                universitySelect.innerHTML = '<option value="">-- اختر الجامعة --</option>';
-                let universities = data[country];
-    
-                for (let uni in universities) {
-                    let option = document.createElement("option");
-                    option.value = uni;
-                    option.textContent = uni;
-    
-                    // التحقق مما إذا كانت الجامعة تحتوي على تخصصات ضمن النطاق السعري
-                    let hasMatchingMajors = universities[uni].some(major => 
-                        major.price >= minPrice && major.price <= maxPrice
-                    );
-    
-                    // إذا كانت الجامعة تحتوي على تخصصات ضمن النطاق السعري، نجعلها واضحة وبارزة
-                    if (hasMatchingMajors) {
-                        option.style.opacity = "1"; // جعلها واضحة
-                        option.style.fontWeight = "bold"; // جعلها بارزة
-                    } else {
-                        option.style.opacity = "0.5"; // جعلها باهتة
-                        option.style.fontWeight = "normal"; // إزالة التمييز
-                    }
-    
-                    universitySelect.appendChild(option);
-                }
-    
-                universitySelect.disabled = false;
-            } else {
-                universitySelect.disabled = true;
-            }
-        }
-    
-        // تفعيل حقل اللغة عند اختيار الجامعة
-        function updateLanguageOptions() {
-            resetFields(["language", "searchMajor", "price"]);
-            let languageSelect = document.getElementById("language");
-            let country = document.getElementById("country").value;
-            let university = document.getElementById("university").value;
-    
-            if (country && university) {
-                let languages = new Set(data[country][university].map(major => major.language));
-                let minPrice = parseFloat(document.getElementById("minPrice").value);
-                let maxPrice = parseFloat(document.getElementById("maxPrice").value);
-    
-                languages.forEach(lang => {
-                    let option = document.createElement("option");
-                    option.value = lang;
-                    option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
-    
-                    // التحقق مما إذا كان هناك تخصص واحد على الأقل ضمن النطاق السعري
-                    let hasMatchingMajors = data[country][university]
-                        .filter(major => major.language === lang)
-                        .some(major => major.price >= minPrice && major.price <= maxPrice);
-    
-                    // إذا كان هناك تخصص واحد على الأقل ضمن النطاق السعري، نجعل اللغة واضحة
-                    if (hasMatchingMajors) {
-                        option.style.opacity = "1"; // جعلها واضحة
-                        option.style.fontWeight = "bold"; // جعلها بارزة
-                    } else {
-                        option.style.opacity = "0.5"; // جعلها باهتة
-                        option.style.fontWeight = "normal"; // إزالة التمييز
-                    }
-    
-                    languageSelect.appendChild(option);
-                });
-    
-                languageSelect.disabled = false;
-            } else {
-                languageSelect.disabled = true;
-            }
-        }
-    
-        // تفعيل حقل البحث عند اختيار اللغة
-        function enableSearchMajor() {
-            let languageSelect = document.getElementById("language");
-            let searchMajorInput = document.getElementById("searchMajor");
-    
-            if (languageSelect.value) {
-                searchMajorInput.disabled = false;
-            } else {
-                searchMajorInput.disabled = true;
-            }
-        }
-    
-        // إعادة تعيين الحقول
-        function resetFields(fields) {
-            fields.forEach(field => {
-                let element = document.getElementById(field);
-                if (element.tagName === "SELECT") {
-                    element.innerHTML = '<option value="">-- اختر --</option>';
-                    element.disabled = true;
-                } else if (element.tagName === "INPUT") {
-                    element.value = "";
-                } else if (element.tagName === "H3") {
-                    element.textContent = "";
-                }
-            });
-        }
-    
-        // تعبئة قائمة الدول عند تحميل الصفحة
+
+        // تعبئة قائمة الدول عند تحميل الصفحة (البحث عن التخصص)
         function populateCountries() {
             let countrySelect = document.getElementById("country");
+            countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
+
             for (let country in data) {
                 let option = document.createElement("option");
                 option.value = country;
@@ -513,8 +785,92 @@
                 countrySelect.appendChild(option);
             }
         }
-    
-        // البحث عن التخصصات
+
+        // إعادة تعيين الحقول عند تغيير الدولة (البحث عن التخصص)
+        function updateUniversities() {
+            let country = document.getElementById("country").value;
+            let universitySelect = document.getElementById("university");
+
+            if (country) {
+                universitySelect.innerHTML = '<option value="">-- اختر الجامعة --</option>';
+                let universities = data[country];
+
+                for (let uni in universities) {
+                    let option = document.createElement("option");
+                    option.value = uni;
+                    option.textContent = uni;
+                    universitySelect.appendChild(option);
+                }
+
+                universitySelect.disabled = false;
+            } else {
+                universitySelect.disabled = true;
+            }
+
+            // إعادة تعيين الحقول الأخرى
+            resetLanguageAndSearch();
+        }
+
+        // تفعيل حقل اللغة عند اختيار الجامعة (البحث عن التخصص)
+        function updateLanguageOptions() {
+            let languageSelect = document.getElementById("language");
+            let country = document.getElementById("country").value;
+            let university = document.getElementById("university").value;
+
+            if (country && university) {
+                let languages = new Set(data[country][university].map(major => major.language));
+
+                languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
+
+                languages.forEach(lang => {
+                    let option = document.createElement("option");
+                    option.value = lang;
+                    option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
+                    languageSelect.appendChild(option);
+                });
+
+                languageSelect.disabled = false;
+            } else {
+                languageSelect.disabled = true;
+            }
+
+            // إعادة تعيين الحقول الأخرى
+            resetSearchAndPrice();
+        }
+
+        // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
+        function enableSearchMajor() {
+            let languageSelect = document.getElementById("language");
+            let searchMajorInput = document.getElementById("searchMajor");
+
+            if (languageSelect.value) {
+                searchMajorInput.disabled = false;
+            } else {
+                searchMajorInput.disabled = true;
+            }
+
+            // إعادة تعيين الحقول الأخرى
+            resetSearchAndPrice();
+        }
+
+        // إعادة تعيين اللغة والبحث والسعر
+        function resetLanguageAndSearch() {
+            document.getElementById("language").value = "";
+            document.getElementById("language").disabled = true;
+            document.getElementById("searchMajor").value = "";
+            document.getElementById("searchMajor").disabled = true;
+            document.getElementById("suggestions").style.display = "none";
+            document.getElementById("price").innerHTML = "";
+        }
+
+        // إعادة تعيين البحث والسعر
+        function resetSearchAndPrice() {
+            document.getElementById("searchMajor").value = "";
+            document.getElementById("suggestions").style.display = "none";
+            document.getElementById("price").innerHTML = "";
+        }
+
+        // البحث عن التخصصات (البحث عن التخصص)
         function searchMajor() {
             let searchText = document.getElementById("searchMajor").value.toLowerCase();
             let country = document.getElementById("country").value;
@@ -522,102 +878,213 @@
             let language = document.getElementById("language").value;
             let degree = document.getElementById("degree").value;
             let suggestionsBox = document.getElementById("suggestions");
-    
+
             suggestionsBox.innerHTML = "";
             suggestionsBox.style.display = "none";
-    
+
             if (country && university && language && degree && searchText) {
                 let filteredMajors = data[country][university].filter(major =>
-                    major.language === language && major.degree === degree && major.name.toLowerCase().includes(searchText)
+                    
+                    major.language === language &&
+                    major.degree === degree &&
+                    major.name.toLowerCase().includes(searchText)
                 );
-    
+
                 if (filteredMajors.length > 0) {
                     suggestionsBox.style.display = "block";
+
                     filteredMajors.forEach(major => {
                         let div = document.createElement("div");
                         div.textContent = major.name;
-    
-                        // التحقق مما إذا كان التخصص ضمن النطاق السعري
-                        let minPrice = parseFloat(document.getElementById("minPrice").value);
-                        let maxPrice = parseFloat(document.getElementById("maxPrice").value);
-    
-                        if (major.price >= minPrice && major.price <= maxPrice) {
-                            div.style.fontWeight = "bold"; // جعل التخصص بارزًا
-                        } else {
-                            div.style.opacity = "0.5"; // جعل التخصص باهتًا
-                        }
-    
                         div.onclick = () => selectMajor(major);
                         suggestionsBox.appendChild(div);
                     });
                 } else {
-                    suggestionsBox.style.display = "none";
+                    suggestionsBox.innerHTML = "<div style='padding: 10px; text-align: center;'>لا توجد نتائج</div>";
+                    suggestionsBox.style.display = "block";
                 }
             }
         }
-    
-        // عند اختيار تخصص
+
+        // عند اختيار تخصص (البحث عن التخصص)
         function selectMajor(major) {
             document.getElementById("searchMajor").value = major.name;
             document.getElementById("suggestions").style.display = "none";
             document.getElementById("price").innerHTML = `<div style='display: flex; justify-content: center; gap: 20px;'>
                 <div style='background: #f0f0f0; padding: 10px; border-radius: 10px;'>
-                    <strong>السعر العادي:</strong> ${major.price} $
+                    <strong>السعر العادي: $</strong> ${major.price} 
                 </div>
                 <div style='background: #d4edda; padding: 10px; border-radius: 10px;'>
-                    <strong>سعر المنحة:</strong> ${major.price * 0.8} $
+                    <strong>سعر المنحة: </strong> ${"not found"} $
                 </div>
             </div>`;
         }
 
-        document.getElementById("searchMajor").blur(); // إخفاء لوحة المفاتيح
-    
-        // تعبئة قائمة الدول عند تحميل الصفحة
-        populateCountries();
-    
-        // إخفاء الاقتراحات عند النقر خارجها
-        document.addEventListener("click", function (event) {
-            let suggestionsBox = document.getElementById("suggestions");
-            if (!document.getElementById("searchMajor").contains(event.target)) {
-                suggestionsBox.style.display = "none";
+        // تسجيل الخروج
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            window.location.href = "login.html";
+        }
+
+        // تعبئة قائمة الدول للبحث عن الجامعة
+        function populateCountriesForUniversitySearch() {
+            let countrySelect = document.getElementById("countryUniversity");
+            countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
+
+            for (let country in data) {
+                let option = document.createElement("option");
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
             }
-        });
-    
-        // تفعيل/تعطيل حقلي السعر عند اختيار الدولة
-        document.getElementById("country").addEventListener("change", function() {
-            updateUniversities();
-            let country = document.getElementById("country").value;
-            let minPriceInput = document.getElementById("minPrice");
-            let maxPriceInput = document.getElementById("maxPrice");
-    
+        }
+
+        // إعادة تعيين الحقول عند تغيير الدولة (البحث عن الجامعة)
+        function updateMajorsForUniversitySearch() {
+            let country = document.getElementById("countryUniversity").value;
+            let majorInput = document.getElementById("majorUniversity");
+
             if (country) {
-                minPriceInput.disabled = false;
-                maxPriceInput.disabled = false;
+                majorInput.disabled = false;
             } else {
-                minPriceInput.disabled = true;
-                maxPriceInput.disabled = true;
+                majorInput.disabled = true;
             }
-        });
-    
-        // تفعيل/تعطيل حقل الجامعة عند إدخال الحدود السعرية
-        document.getElementById("minPrice").addEventListener("input", function() {
-            checkPriceInputs(); // تحديث قائمة الجامعات أولاً
-            resetFields(["language", "searchMajor", "price"]); // إعادة تعيين الحقول الأخرى
-        });
-        document.getElementById("maxPrice").addEventListener("input", function() {
-            checkPriceInputs(); // تحديث قائمة الجامعات أولاً
-            resetFields(["language", "searchMajor", "price"]); // إعادة تعيين الحقول الأخرى
-        });
-    
-        // تفعيل حقل اللغة عند اختيار الجامعة
-        document.getElementById("university").addEventListener("change", updateLanguageOptions);
-    
-        // تفعيل حقل البحث عند اختيار اللغة
+
+            // تفعيل حقل اللغة بعد اختيار الدولة
+            updateLanguageOptionsForUniversitySearch();
+        }
+
+        // تفعيل حقل اللغة عند اختيار الدولة والتخصص (البحث عن الجامعة)
+        function updateLanguageOptionsForUniversitySearch() {
+            let languageSelect = document.getElementById("languageUniversity");
+            let country = document.getElementById("countryUniversity").value;
+            let major = document.getElementById("majorUniversity").value.toLowerCase();
+
+            if (country && major) {
+                let universities = data[country];
+                let languages = new Set();
+
+                for (let uni in universities) {
+                    universities[uni].forEach(program => {
+                        if (program.name.toLowerCase().includes(major)) {
+                            languages.add(program.language);
+                        }
+                    });
+                }
+
+                languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
+
+                languages.forEach(lang => {
+                    let option = document.createElement("option");
+                    option.value = lang;
+                    option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
+                    languageSelect.appendChild(option);
+                });
+
+                languageSelect.disabled = false;
+            } else {
+                languageSelect.disabled = true;
+            }
+        }
+
+        // البحث عن الجامعات بناءً على المدخلات
+        function searchUniversities() {
+            let country = document.getElementById("countryUniversity").value;
+            let major = document.getElementById("majorUniversity").value.toLowerCase();
+            let degree = document.getElementById("degreeUniversity").value;
+            let language = document.getElementById("languageUniversity").value;
+            let minBudget = document.getElementById("minBudget").value;
+            let maxBudget = document.getElementById("maxBudget").value;
+            let universityList = document.getElementById("universityList");
+
+            universityList.innerHTML = ""; // مسح النتائج القديمة
+            universityList.style.display = "none"; // إخفاء القائمة
+
+            if (!country || !major || !degree || !language) {
+                alert("يرجى ملء جميع الحقول!");
+                return;
+            }
+
+            let universities = data[country];
+            let results = [];
+
+            for (let uni in universities) {
+                universities[uni].forEach(program => {
+                    if (
+                        program.name.toLowerCase().includes(major) && // البحث عن التخصص
+                        program.degree === degree && // تطابق الدرجة العلمية
+                        program.language === language && // تطابق اللغة
+                        (!minBudget || program.price >= parseInt(minBudget)) && // الميزانية الدنيا
+                        (!maxBudget || program.price <= parseInt(maxBudget)) // الميزانية القصوى
+                    ) {
+                        results.push({ university: uni, ...program });
+                    }
+                });
+            }
+
+            // ترتيب النتائج تصاعديًا حسب السعر
+            results.sort((a, b) => b.price - a.price);
+
+
+            if (results.length > 0) {
+                universityList.style.display = "block"; // إظهار القائمة
+
+                results.forEach(result => {
+                    let div = document.createElement("div");
+                    div.style.padding = "10px";
+                    div.style.border = "1px solid #ccc";
+                    div.style.margin = "5px 0";
+                    div.style.borderRadius = "5px";
+                    div.innerHTML = `<strong>${result.university}</strong>: ${result.name} (${result.language}) - <span style="color: green;">${result.price} $</span>`;
+                    universityList.appendChild(div);
+                });
+            } else {
+                universityList.innerHTML = "<div style='padding: 10px; text-align: center;'>لم يتم العثور على نتائج</div>";
+                universityList.style.display = "block"; // إظهار القائمة حتى لو كانت فارغة
+            }
+        }
+
+        // إظهار البحث عن التخصص
+        function showSearchByMajor() {
+            document.getElementById("searchByMajor").style.display = "block";
+            document.getElementById("searchByUniversity").style.display = "none";
+        }
+
+        // إظهار البحث عن الجامعة
+        function showSearchByUniversity() {
+            document.getElementById("searchByMajor").style.display = "none";
+            document.getElementById("searchByUniversity").style.display = "block";
+        }
+
+        // تعبئة قائمة الدول عند تحميل الصفحة
+        window.onload = function () {
+            populateCountries();
+            populateCountriesForUniversitySearch();
+        };
+
+        // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
         document.getElementById("language").addEventListener("change", enableSearchMajor);
-    
-        // تفعيل عرض التخصصات عند اختيار الدرجة
-        document.getElementById("degree").addEventListener("change", updateMajors);
-    
-        // تفعيل البحث عند الكتابة في حقل البحث
-        document.getElementById("searchMajor").addEventListener("input", searchMajor);
-    </script>
+
+        window.onload = function () {
+            populateCountries();
+            populateCountriesForUniversitySearch();
+            
+            // تفعيل حقول البحث عند التحميل
+            document.getElementById("searchMajor").disabled = false;
+            document.getElementById("majorUniversity").disabled = false;
+        };
+
+        // مسح محتوى البحث عن التخصص
+        function clearSearch() {
+            document.getElementById("searchMajor").value = ""; // مسح النص
+            document.getElementById("suggestions").style.display = "none"; // إخفاء الاقتراحات
+            document.getElementById("price").innerHTML = ""; // مسح السعر المعروض
+        }
+
+        // مسح محتوى البحث عن الجامعة
+        function clearUniversitySearch() {
+            document.getElementById("majorUniversity").value = ""; // مسح النص
+        }
+</script>
+</body>
+</html>
