@@ -920,6 +920,33 @@
             </div>`;
         }
 
+        function updateBudget() {
+            const minBudget = document.getElementById("minBudget");
+            const maxBudget = document.getElementById("maxBudget");
+            const minBudgetValue = document.getElementById("minBudgetValue");
+            const maxBudgetValue = document.getElementById("maxBudgetValue");
+            
+            // الحصول على القيم الحالية
+            let minVal = parseInt(minBudget.value);
+            let maxVal = parseInt(maxBudget.value);
+            
+            // التأكد من أن الحد الأدنى لا يتجاوز الحد الأقصى
+            if (minVal > maxVal) {
+                minVal = maxVal;
+                minBudget.value = minVal;
+            }
+            
+            // التأكد من أن الحد الأقصى لا يقل عن الحد الأدنى
+            if (maxVal < minVal) {
+                maxVal = minVal;
+                maxBudget.value = maxVal;
+            }
+            
+            // تحديث القيم المعروضة
+            minBudgetValue.textContent = minVal;
+            maxBudgetValue.textContent = maxVal;
+        }
+
         // تسجيل الخروج
         function logout() {
             localStorage.removeItem("loggedIn");
