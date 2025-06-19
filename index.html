@@ -12,7 +12,7 @@
             gap: 10px;
             font-family: Arial, sans-serif;
         }
-        
+
         .button-container {
             display: flex;
             gap: 20px;
@@ -431,8 +431,6 @@
     <!-- عرض السعر -->
     <h3 id="price"></h3>
 
-    <!-- تسجيل الخروج -->
-    <button onclick="logout()">تسجيل الخروج</button>
 </div>
 
 <!-- البحث عن الجامعة -->
@@ -490,628 +488,1010 @@
     <div id="universityList" style="margin-top: 20px;"></div>
 </div>
 
-    <script>
-        const data = {
-            "تركيا": {
-                "KENT UNIVERSITY": [
-                    { name: "Dentistry (Scholarship) - طب اسنان منحه", language: "Turkish", price: 35000, degree: "Bachelor" },
-                    { name: "Dentistry (Scholarship) - طب اسنان منحه", language: "English", price: 35000, degree: "Bachelor" },
-                    { name: "Pharmacy (Scholarship) - صيدلة منحة", language: "Turkish", price: 18000, degree: "Bachelor" },
-                    { name: "Gastronomy and Culinary Arts - فنون الطهي و فنون الطهي", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Gastronomy and Culinary Arts - فنون الطهي و فنون الطهي", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Interior Architecture - هندسة الديكور الداخلي", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Digital Game Design - تصميم الألعاب الرقمية", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Visual Communication Design - تصميم الاتصال المرئي", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Urban Design and Landscape Architecture - تصميم المدن وهندسة المناظر الطبيعية", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Radio, Television and Cinema - الإذاعة والتلفزيون والسينما", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Economy and Finance - الاقتصاد والتمويل", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "International Relations - العلاقات الدولية", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Public Relations and Advertising - العلاقات العامة والإعلان", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Psychology - علم النفس", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Psychology - علم النفس", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Social Services - الخدمات الاجتماعية", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "International Trade and Logistics - التجارة الدولية واللوجستيات", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Healthcare Management - إدارة خدمات الرعاية الصحية", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Nutrition and Dietetics - التغذية وعلم التغذية", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Nutrition and Dietetics - التغذية وعلم التغذية", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Child Development - تنمية الطفل", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "English", price: 2900, degree: "Bachelor" },
-                    { name: "Midwifery - القبالة", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Speech and Language Therapy - علاج النطق واللغة", language: "Turkish", price: 2200, degree: "Bachelor" },
-                    { name: "Child Development - تنمية الطفل", language: "Turkish", price: 1600, degree: "Associate" }, // من الصفحة 2 الجزء الأول
-                    { name: "Operating Room Services - خدمات غرفة العمليات", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Oral and Dental Health - صحة الفم والأسنان", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Electro neurophysiology - علم الفسيولوجيا العصبية الكهربائية", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "First Aid and Emergency - الإسعافات الأولية والطوارئ", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Anesthesia - التخدير", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Medical Documentation and Secretarial - التوثيق الطبي والسكرتارية", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Medical Imaging Technologies - تقنيات التصوير الطبي", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Pharmacy Services - خدمات الصيدلة", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Pathology Laboratory Techniques - تقنيات مختبرات الأمراض", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Dental Prothesis Technology - تقنية أطقم الأسنان", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Information Security Technology - تقنية أمن المعلومات", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Court Office Services - خدمات مكتب المحكمة", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Computer Programming - برمجة الكمبيوتر", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Hair Care and Beauty Services - خدمات العناية بالشعر والتجميل", language: "Turkish", price: 1600, degree: "Associate" },
-                    { name: "Occupational Health & Safety (Non-thesis) - الصحة والسلامة المهنية (بدون أطروحة)", language: "Turkish", price: 2500, degree: "Master" }, // من الصفحة 2 الجزء الثاني
-                    { name: "Healthcare Management (Non-thesis) - إدارة الرعاية الصحية (بدون أطروحة)", language: "Turkish", price: 2500, degree: "Master" },
-                    { name: "Healthcare Management (Thesis) - إدارة الرعاية الصحية (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Child Development (Thesis) - تنمية الطفل (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Gastronomy and Culinary Arts (Thesis) - فنون الطهي والطهي (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Gastronomy and Culinary Arts (Non-thesis) - فنون الطهي والطهي (بدون أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Nutrition and Dietetics (Thesis) - التغذية وعلم التغذية (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Nutrition and Dietetics (Non-thesis) - التغذية وعلم التغذية (بدون أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "International Business Administration (Non-thesis) - إدارة الأعمال الدولية (بدون أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Business Management (Thesis) - إدارة الأعمال (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Political Science and International Relations (Thesis) (English) - العلوم السياسية والعلاقات الدولية (مع أطروحة) (الإنجليزية)", language: "English", price: 3500, degree: "Bachelor" },
-                    { name: "Clinical Psychology (Non-Thesis) - علم النفس السريري (بدون أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Clinical Psychology (Thesis) - علم النفس السريري (مع أطروحة)", language: "Turkish", price: 3500, degree: "Master" },
-                    { name: "Oral, Dental and Maxillofacial Surgery - جراحة الفم والأسنان والوجه والفكين", language: "Turkish", price: 59750, degree: "Doctorate" },
-                    { name: "Restorative Dentistry - طب الأسنان الترميمي", language: "Turkish", price: 60000, degree: "Doctorate" },
-                    { name: "Orthodontics - تقويم الأسنان", language: "Turkish", price: 60000, degree: "Doctorate" },
-                    { name: "Pedodontics - طب أسنان الأطفال", language: "Turkish", price: 60000, degree: "Doctorate" },
-                    { name: "Gastronomy and Culinary Arts - فنون الطهي وفنون الطهي", language: "Turkish", price: 54000, degree: "Doctorate" },
-                    { name: "Turkish Preparation Course - دورة التحضير للغة التركية", language: "Turkish", price: 1080, degree: "Bachelor" }, // من الصفحة 3
-                    { name: "English Preparation Course - دورة التحضير للغة الإنجليزية", language: "English", price: 2900, degree: "Bachelor" },
-                ],
-                "جامعة ميدبول": [
-                    { name: "International School of Medicine - المدرسة الدولية للطب", language: "English", price: 17000, degree: "Bachelor" },
-                    { name: "School of Medicine - كلية الطب بشري" , language: "Turkish", price: 17000, degree: "Bachelor" },
-                    { name: "School of Dentistry - كلية طب الأسنان", language: "English", price: 17000, degree: "Bachelor" },
-                    { name: "School of Dentistry - كلية طب الأسنان", language: "Turkish", price: 17000, degree: "Bachelor" },
-                    { name: "School of Pharmacy - كلية الصيدلة", language: "English", price: 17000, degree: "Bachelor" },
-                    { name: "School of Pharmacy - كلية الصيدلة", language: "Turkish", price: 17000, degree: "Bachelor" },
-                    { name: "School of Law - كلية القانون", language: "Turkish", price: 17000, degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Nutrition and Dietetics - التغذية وعلم التغذية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Health Management - إدارة الصحة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Health Management - إدارة الصحة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Child Development - تنمية الطفل", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Midwifery - القبالة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Social Services - الخدمات الاجتماعية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Speech and Language Therapy - علاج النطق واللغة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Speech and Language Therapy - علاج النطق واللغة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Electrical-Electronic Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Biomedical Engineering - الهندسة الطبية الحيوية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Civil Engineering - الهندسة المدنية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Economics and Finance - الاقتصاد والتمويل", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "International Trade and Finance - التجارة الدولية والتمويل", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Management Information Systems - نظم معلومات الإدارة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Logistic Management - إدارة اللوجستيات", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Human Resources Management - إدارة الموارد البشرية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Aviation Management - إدارة الطيران", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Banking and Insurance - البنوك والتأمين", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Psychology - علم النفس", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Psychology - علم النفس", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Interior Architecture and Environmental Design - العمارة الداخلية وتصميم البيئة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Visual Communication Design - تصميم الاتصال المرئي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Turkish Music Art - فن الموسيقى التركية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Gastronomy and Culinary Arts - فنون الطهي والطهي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Urban Design and Landscape Architecture - تصميم المدن وهندسة المناظر الطبيعية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Psychological Counselling and Guidance - الإرشاد والإرشاد النفسي", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "English Teaching - تدريس اللغة الإنجليزية", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Primary Mathematics Teaching - تدريس الرياضيات الابتدائية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Special Education Teaching - تدريس التربية الخاصة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Pre-School Teaching - تدريس مرحلة ما قبل المدرسة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Public Relations and Advertising - العلاقات العامة والإعلان", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Media and Visual Arts - الإعلام والفنون البصرية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Nutrition and Dietetics - التغذية وعلم التغذية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Child Development - تنمية الطفل", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Oral and Dental Health - صحة الفم والأسنان", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Operating Room Services - خدمات غرفة العمليات", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Anesthesia - التخدير", language: "English", price: 3600, degree: "Bachelor" },
-                    { name: "Anesthesia - التخدير", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Dental Prosthesis Technology - تقنية أطقم الأسنان", language: "Turkish", price: 3600, degree: "Bachelor" },
-                    { name: "Dialysis - غسيل الكلى", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Pharmacy Services - خدمات الصيدلة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Electroneurophysiology - الفيزيولوجيا العصبية الكهربائية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Physiotherapy - العلاج الطبيعي", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "First and Emergency Aid - الإسعافات الأولية والطوارئ", language: "English", price: 3600, degree: "Bachelor" },
-                    { name: "First and Emergency Aid - الإسعافات الأولية والطوارئ", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Occupational Health and Safety - الصحة والسلامة المهنية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Audiometry - قياس السمع", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Opticianry - صناعة النظارات", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Pathology Laboratory Techniques - تقنيات مختبرات الأمراض", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Radiotherapy - العلاج الإشعاعي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Management of Health Institutions - إدارة المؤسسات الصحية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Medical Documentation and Secretary - التوثيق الطبي والسكرتارية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Medical Imaging Techniques - تقنيات التصوير الطبي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Computer Programming - برمجة الكمبيوتر", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Biomedical Device Technology - تقنية الأجهزة الطبية الحيوية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Interior Design - التصميم الداخلي", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Construction Technology - تكنولوجيا البناء", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Architectural Restoration - الترميم المعماري", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Civil Aviation Transportation Management - إدارة النقل الجوي المدني", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Banking and Insurance - البنوك والتأمين", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Foreign Trade - التجارة الخارجية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Public Relations and Publicity - العلاقات العامة والدعاية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Human Resources Management - إدارة الموارد البشرية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Logistics - اللوجستيات", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Finance - التمويل", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Accounting and Taxation - المحاسبة والضرائب", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Radio and Television Programming - برمجة الراديو والتلفزيون", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Civil Aviation Cabin Services - خدمات كابينة الطيران المدني", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Social Services - الخدمات الاجتماعية", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Sports Management - إدارة الرياضة", language: "Turkish", price: 3150, degree: "Bachelor" },
-                    { name: "Applied English and Translation - اللغة الإنجليزية التطبيقية والترجمة", language: "English", price: 3150, degree: "Bachelor" },
-                    { name: "Turkish Foundation School - المدرسة التحضيرية التركية", language: "Turkish", price: 1250, degree: "Bachelor" },
-                ],
-                "جامعة اسطنبول كينت ": [
-                    { name: "Dentistry - طب بشري", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Dentistry - طب الأسنان", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Dentistry - طب الأسنان", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Engineering - الهندسة الصناعية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Computer Engineering - هندسة الحاسوب", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Civil Engineering - الهندسة المدنية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Civil Engineering - الهندسة المدنية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Economics - الاقتصاد", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Economics - الاقتصاد", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Graphic Design - التصميم الجرافيكي", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Visual Arts - الفنون البصرية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Visual Arts - الفنون البصرية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Master" },
-                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "Turkish", price: "not found", degree: "Master" },
-                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "Turkish", price: "not found", degree: "Master" }
-                ],
-                "اسطنبول جيديك": [
-                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Mechanical Engineering - الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Electrical and Electronics Engineering - الهندسة الكهربائية والإلكترونية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Engineering - الهندسة الصناعية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Computer Engineering - هندسة الحاسوب", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Civil Engineering - الهندسة المدنية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Civil Engineering - الهندسة المدنية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Architecture - العمارة", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Nursing - التمريض", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Economics - الاقتصاد", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Economics - الاقتصاد", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Graphic Design - التصميم الجرافيكي", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Visual Arts - الفنون البصرية", language: "English", price: "not found", degree: "Bachelor" },
-                    { name: "Visual Arts - الفنون البصرية", language: "Turkish", price: "not found", degree: "Bachelor" },
-                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Mechanical Technology - تكنولوجيا الميكانيكا", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Electrical and Electronics Technology - تكنولوجيا الكهرباء والإلكترونيات", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Business Administration - إدارة الأعمال", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Automotive Technology - تكنولوجيا السيارات", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "English", price: "not found", degree: "Associate" },
-                    { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: "not found", degree: "Associate" },
-                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Mechanical Engineering - ماجستير في الهندسة الميكانيكية", language: "Turkish", price: "not found", degree: "Master" },
-                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Business Administration - ماجستير في إدارة الأعمال", language: "Turkish", price: "not found", degree: "Master" },
-                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "English", price: "not found", degree: "Master" },
-                    { name: "Master in Political Science - ماجستير في العلوم السياسية", language: "Turkish", price: "not found", degree: "Master" }
-                ],
-            },
-            "ماليزيا": {
+<script>
+    const data = {
+        "تركيا": {
+            "ANKARA MEDIPOL - انقرا ميدبول": [
+                { name: "Radiotherapy - العلاج الإشعاعي", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Oral and Dental Health - صحة الفم والأسنان", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Opticianry - فني نظارات", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Operation Room Services - خدمات غرفة العمليات", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Medical Imaging Techniques - تقنيات التصوير الطبي", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Marketing - تسويق", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Justice - عدالة", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Interior Design - تصميم داخلي", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Health Tourism Management - إدارة السياحة الصحية", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "First and Emergency Aid - الإسعافات الأولية والطارئة", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Dialysis - غسيل الكلى", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Dental Prosthesis - أطقم الأسنان", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Construction Technologies - تقنيات البناء", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Computer Programming - برمجة الحاسوب", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Biomedical Device Technologies - تقنيات الأجهزة الطبية", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Audiometry - قياس السمع", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Anesthesia - تخدير", language: "Turkish", price: 2700, degree: "Diploma" },
+                { name: "Speech and Language Therapy - علاج النطق واللغة", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Public Relations and Advertising - العلاقات العامة والإعلان", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Psychology - علم النفس (English)", language: "English", price: 5040, degree: "Bachelor" },
+                { name: "Psychology - علم النفس (Turkish)", language: "Turkish", price: 5040, degree: "Bachelor" },
+                { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: 4320, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي والتأهيل", language: "Turkish", price: 5400, degree: "Bachelor" },
+                { name: "Pharmacy - صيدلة (English)", language: "English", price: 12960, degree: "Bachelor" },
+                { name: "Pharmacy - صيدلة (Turkish)", language: "Turkish", price: 10800, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics - التغذية والحمية", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Nursing - تمريض (English)", language: "English", price: 5040, degree: "Bachelor" },
+                { name: "Nursing - تمريض (Turkish)", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Midwifery - قابلة", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Medicine - طب (English)", language: "English", price: 25200, degree: "Bachelor" },
+                { name: "Medicine - طب (Turkish)", language: "Turkish", price: 21600, degree: "Bachelor" },
+                { name: "Management Information Systems - نظم المعلومات الإدارية", language: "English", price: 5040, degree: "Bachelor" },
+                { name: "Law - قانون", language: "Turkish", price: 6480, degree: "Bachelor" },
+                { name: "International Trade and Finance - التجارة الدولية والتمويل (English)", language: "English", price: 5040, degree: "Bachelor" },
+                { name: "International Trade and Finance - التجارة الدولية والتمويل (Turkish)", language: "Turkish", price: 5040, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts - فنون الطهي والطهو", language: "English", price: 4320, degree: "Bachelor" },
+                { name: "Ergotherapy - العلاج الوظيفي", language: "Turkish", price: 4320, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية", language: "English", price: 5400, degree: "Bachelor" },
+                { name: "Dentistry - طب الأسنان (English)", language: "English", price: 23760, degree: "Bachelor" },
+                { name: "Dentistry - طب الأسنان (Turkish)", language: "Turkish", price: 21600, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: 5400, degree: "Bachelor" },
+                { name: "Audiology - علم السمع", language: "Turkish", price: 4320, degree: "Bachelor" }
+            ],
+            "Istanbul Gedik University - جامعة جيديك إسطنبول": [
+                { name: "Software Engineering - هندسة البرمجيات (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "Computer Programming - برمجة الحاسوب (تركي)", language: "Turkish", price: 1400, degree: "Associate" },
+                { name: "Anesthesia - تخدير (تركي)", language: "Turkish", price: 1400, degree: "Associate" },
+                { name: "Foreign Trade - التجارة الخارجية (إنجليزي)", language: "English", price: 1400, degree: "Associate" },
+                { name: "Defense Technologies - تكنولوجيا الدفاع (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Mechanical Engineering - الهندسة الميكانيكية (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Physical Education and Sport Science - التربية البدنية وعلوم الرياضة (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Occupational Safety and Health - السلامة والصحة المهنية (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Business Administration - إدارة الأعمال (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "International Trade - التجارة الدولية (تركي)", language: "Turkish", price: 4700, degree: "Doctorate" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي (تركي)", language: "Turkish", price: 2250, degree: "Master" },
+                { name: "Mechatronics Engineering - هندسة الميكاترونكس (تركي)", language: "Turkish", price: 2250, degree: "Master" },
+                { name: "Architecture - عمارة (تركي)", language: "Turkish", price: 2250, degree: "Master" },
+                { name: "Gastronomy and Culinary Arts - فنون الطهي والطهو (تركي)", language: "Turkish", price: 2250, degree: "Master" },
+                { name: "Business Administration - إدارة الأعمال (إنجليزي)", language: "English", price: 2250, degree: "Master" },
+                { name: "Clinical Psychology - علم النفس السريري (تركي)", language: "Turkish", price: 2250, degree: "Master" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية (تركي)", language: "Turkish", price: 2750, degree: "Master" },
+                { name: "Civil Engineering - الهندسة المدنية (تركي)", language: "Turkish", price: 2750, degree: "Master" },
+                { name: "Artificial Intelligence Engineering - هندسة الذكاء الاصطناعي (تركي)", language: "Turkish", price: 2750, degree: "Master" },
+                { name: "Visual Communication Design - تصميم الاتصال المرئي (تركي)", language: "Turkish", price: 2750, degree: "Master" },
+                { name: "Law - قانون (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "Psychology - علم النفس (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "International Relations - العلاقات الدولية (إنجليزي)", language: "English", price: 2750, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics - التغذية والحمية (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" },
+                { name: "Child Development - تنمية الطفل (تركي)", language: "Turkish", price: 2000, degree: "Bachelor" }
+            ],
+            "ALTINBAŞ UNIVERSITY - جامعة آلتن باش": [
+                { name: "Private Law - القانون الخاص", language: "Turkish", price: 10000, degree: "Doctorate" },
+                { name: "Pharmaceutical Sciences - العلوم الصيدلانية", language: "Turkish", price: 19800, degree: "Doctorate" },
+                { name: "Periodontology - طب دواعم السن (English)", language: "English", price: 19800, degree: "Doctorate" },
+                { name: "International Relations - العلاقات الدولية (English)", language: "English", price: 10000, degree: "Doctorate" },
+                { name: "Healthcare Management - إدارة الرعاية الصحية", language: "Turkish", price: 19800, degree: "Doctorate" },
+                { name: "Electrical and Computer Engineering - الهندسة الكهربائية والحاسوب (English)", language: "English", price: 19800, degree: "Doctorate" },
+                { name: "Business Administration - إدارة الأعمال (Turkish)", language: "Turkish", price: 10000, degree: "Doctorate" },
+                { name: "Strategic Marketing And Brand Management - التسويق الاستراتيجي وإدارة العلامات التجارية", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Public Law - القانون العام", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Psychology - علم النفس", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Clinical Psychology - علم النفس السريري", language: "Turkish", price: 5500, degree: "Master" },
+                { name: "Private Law - القانون الخاص", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Mechanical Engineering - الهندسة الميكانيكية (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية (Turkish)", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "International Taxation - الضرائب الدولية (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "International Trade Law - قانون التجارة الدولية", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Information Technologies - تكنولوجيا المعلومات (English)", language: "English", price: 5500, degree: "Master" },
+                { name: "Industrial Engineering - الهندسة الصناعية (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "Financial Economics - الاقتصاد المالي", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Electrical and Computer Engineering - الهندسة الكهربائية والحاسوب (English)", language: "English", price: 5500, degree: "Master" },
+                { name: "Data Analytics - تحليل البيانات (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "Civil Engineering - الهندسة المدنية (English)", language: "English", price: 5500, degree: "Master" },
+                { name: "Business Administration - إدارة الأعمال (Turkish)", language: "Turkish", price: 5500, degree: "Master" },
+                { name: "Business Administration - إدارة الأعمال (English)", language: "English", price: 5500, degree: "Master" },
+                { name: "Biomedical Sciences - العلوم الطبية الحيوية (English)", language: "English", price: 5500, degree: "Master" },
+                { name: "Arts and Design - الفنون والتصميم", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Architecture - العمارة (English)", language: "English", price: 4500, degree: "Master" },
+                { name: "Accounting and Auditing - المحاسبة والمراجعة", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Pediatric Dentistry - طب أسنان الأطفال", language: "Turkish", price: 16200, degree: "Master" },
+                { name: "Periodontology - طب دواعم السن (Turkish)", language: "Turkish", price: 16200, degree: "Master" },
+                { name: "Orthodontics - تقويم الأسنان (English)", language: "English", price: 25000, degree: "Master" },
+                { name: "Aesthetic Dentistry - طب الأسنان التجميلي (English)", language: "English", price: 16200, degree: "Master" },
+                { name: "Radiotherapy - العلاج الإشعاعي", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Oral and Dental Health - صحة الفم والأسنان", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Opticianry - فني نظارات", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Operation Room Services - خدمات غرفة العمليات", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Medical Imaging Techniques - تقنيات التصوير الطبي", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Medical Documentation and Secretary - التوثيق الطبي والسكرتارية", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "First and Emergency Aid - الإسعافات الأولية والطارئة", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Audiometry - قياس السمع", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Anesthesia - تخدير", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Management Information Systems - نظم المعلومات الإدارية (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Software Engineering - هندسة البرمجيات (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Sociology - علم الاجتماع (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Psychology - علم النفس (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Pharmacy - صيدلة (English)", language: "English", price: 11000, degree: "Bachelor" },
+                { name: "Medicine - طب (English)", language: "English", price: 21000, degree: "Bachelor" },
+                { name: "Mechanical Engineering - الهندسة الميكانيكية (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Law - قانون (EN 30%)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Jewelry Design - تصميم المجوهرات", language: "Turkish", price: 3500, degree: "Bachelor" },
+                { name: "International Trade - التجارة الدولية (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "International Relations - العلاقات الدولية (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "International Logistics Management - إدارة اللوجستيات الدولية (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي (Turkish)", language: "Turkish", price: 3500, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Industrial Engineering - الهندسة الصناعية (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts - فنون الطهي والطهو", language: "Turkish", price: 3500, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Economics - الاقتصاد (English)", language: "English", price: 3500, degree: "Bachelor" },
+                { name: "Dentistry - طب الأسنان (EN 30%)", language: "English", price: 16000, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Civil Engineering - الهندسة المدنية (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Cinema and Television - السينما والتلفزيون", language: "Turkish", price: 3500, degree: "Bachelor" },
+                { name: "Business Administration - إدارة الأعمال (English)", language: "English", price: 4500, degree: "Bachelor" },
+                { name: "Architecture - العمارة (English)", language: "English", price: 4500, degree: "Bachelor" }
+            ],
+            "ATILIM UNIVERSITY - جامعة أتيليم": [
+                { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Operation Room Services - خدمات غرفة العمليات", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Justice - العدالة", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Industrial Design - التصميم الصناعي", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "First and Emergency Aid - الإسعافات الأولية والطارئة", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Child Development - تنمية الطفل", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Audiometry - قياس السمع", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Anesthesia - التخدير", language: "Turkish", price: 2250, degree: "Associate" },
+                { name: "Audiology - علم السمع (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Child Development - تنمية الطفل (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Tourism Management - إدارة السياحة (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Fashion and Textile Design - تصميم الأزياء والمنسوجات", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Software Engineering - هندسة البرمجيات (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Public Relations and Advertising - العلاقات العامة والإعلان (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Finance - التمويل", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Psychology - علم النفس (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Political Science and Public Administration - العلوم السياسية والإدارة العامة", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Pilotage - الطيران (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي والتأهيل (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics - التغذية والحمية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Nursing - التمريض (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Metallurgical and Materials Engineering - هندسة المعادن والمواد (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Medicine - الطب (English)", language: "English", price: 16295, degree: "Bachelor" },
+                { name: "Mechatronics Engineering - هندسة الميكاترونيك (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Mechanical Engineering - الهندسة الميكانيكية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Mathematics - الرياضيات (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "International Trade and Logistics - التجارة الدولية واللوجستيات", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "International Relations - العلاقات الدولية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Information Systems Engineering - هندسة نظم المعلومات (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Industrial Product Design - تصميم المنتجات الصناعية", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Industrial Engineering - الهندسة الصناعية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "English Language and Literature - اللغة الإنجليزية وآدابها (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Energy Systems Engineering - هندسة أنظمة الطاقة (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Economics - الاقتصاد (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Economics - الاقتصاد", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Civil Engineering - الهندسة المدنية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Chemical Engineering - الهندسة الكيميائية (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Business Administration - إدارة الأعمال (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Business Administration - إدارة الأعمال", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Avionics - أفيونيكس (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Aviation Management - إدارة الطيران (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Automotive Engineering - هندسة السيارات (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Architecture - العمارة", language: "Turkish", price: 9980, degree: "Bachelor" },
+                { name: "Airframe and Powerplant Maintenance - صيانة هيكل الطائرة والمحرك (English)", language: "English", price: 9980, degree: "Bachelor" },
+                { name: "Aerospace Engineering - هندسة الفضاء (English)", language: "English", price: 9980, degree: "Bachelor" }
+            ],
+             "Beykoz University - جامعة بيكوز": [
+                { name: "Global Politics and International Relations - العلاقات الدولية والسياسة العالمية", language: "English", price: 2400, degree: "Master" },
+                { name: "Work and Organizational Psychology - علم النفس التنظيمي والعمل", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "International Trade and Logistics - التجارة الدولية واللوجستيات", language: "Turkish", price: 2600, degree: "Master" },
+                { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: 3100, degree: "Master" },
+                { name: "Visual Arts and Visual Communication Design - الفنون البصرية وتصميم الاتصالات المرئية", language: "Turkish", price: 2600, degree: "Master" },
+                { name: "Business Administration - إدارة الأعمال", language: "English", price: 3100, degree: "Master" },
+                { name: "Artificial Intelligence - الذكاء الاصطناعي", language: "English", price: 3100, degree: "Master" },
+                { name: "Rail Systems Management - إدارة أنظمة السكك الحديدية", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Opticianry - فني نظارات", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Medical Imaging Techniques - تقنيات التصوير الطبي", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Marine and Port Management - إدارة الموانئ والبحرية", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Logistics - اللوجستيات", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Foreign Trade - التجارة الخارجية", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Interior Design - التصميم الداخلي", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Information Security Technologies - تقنيات أمن المعلومات", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Cooking - الطهي", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "First and Emergency Aid - الإسعافات الأولية والطوارئ", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "E-Commerce and Marketing - التجارة الإلكترونية والتسويق", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Computer Programming - برمجة الحاسوب", language: "Turkish", price: 1500, degree: "Associate" },
+                { name: "Civil Aviation Cabin Services - خدمات مقصورات الطيران المدني", language: "English", price: 1700, degree: "Associate" },
+                { name: "Software Engineering - هندسة البرمجيات", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Radio, Television and Cinema - الإذاعة والتلفزيون والسينما", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Public Relations and Advertising - العلاقات العامة والإعلان", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Psychology - علم النفس", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "Political Science and International Relations - العلوم السياسية والعلاقات الدولية", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "Logistics Management - إدارة اللوجستيات", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "International Trade and Finance - التجارة الدولية والتمويل", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "Interior Architecture - العمارة الداخلية", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Industrial Engineering - الهندسة الصناعية", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "Graphic Design - التصميم الجرافيكي", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts - علوم الطهي والفنون الغذائية", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Digital Game Design - تصميم الألعاب الرقمية", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Communication Design - تصميم الاتصالات", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Cartoon and Animation - الرسوم المتحركة والكاريكاتير", language: "Turkish", price: 2050, degree: "Bachelor" },
+                { name: "Aviation Management - إدارة الطيران", language: "English", price: 2600, degree: "Bachelor" },
+                { name: "Architecture - العمارة", language: "Turkish", price: 2050, degree: "Bachelor" }
+            ],
+            "Biruni University - جامعة بيروني": [
+                { name: "Ergotherapy - العلاج الوظيفي", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Radiotherapy - العلاج الإشعاعي", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Orthopedic Prosthesis and Orhotics - الأطراف الصناعية والتقويمية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Podology - طب الأقدام", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Perfusion Techniques - تقنيات التروية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Physiotherapy - العلاج الطبيعي", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Patalogical Laboratory Techniques - تقنيات المختبرات المرضية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Oral and Dental Health - صحة الفم والأسنان", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Opticianry - فني نظارات", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Operation Room Services - خدمات غرفة العمليات", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Occupational Therapy - العلاج المهني", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Occupational Health And Safety - الصحة والسلامة المهنية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Nucleer Medicine Techniques - تقنيات الطب النووي", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Medical Laboratory Techniques - تقنيات المختبرات الطبية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Medical Imaging Techniques - تقنيات التصوير الطبي", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Medical Documentation and Secretary - التوثيق الطبي والسكرتارية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "First and Emergency Aid - الإسعافات الأولية والطوارئ", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Emergency and Help Management - إدارة الطوارئ والمساعدة", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Electro Neurophysiology - الفيزيولوجيا العصبية الكهربائية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Dialysis - غسيل الكلى", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Dental Prosthesis - أطقم الأسنان", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Computer Programming - برمجة الحاسوب", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Child Development - تنمية الطفل", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Biomedical Equipment Technology - تكنولوجيا الأجهزة الطبية", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Audiometry - قياس السمع", language: "Turkish", price: 1800, degree: "Associate" },
+                { name: "Anesthesia - التخدير", language: "Turkish", price: 3600, degree: "Associate" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Speech and Language Therapy - علاج النطق واللغة", language: "Turkish", price: 2250, degree: "Bachelor" },
+                { name: "Speech and Language Therapy - علاج النطق واللغة", language: "English", price: 3150, degree: "Bachelor" },
+                { name: "Special Education - التربية الخاصة", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Psychological Counselling and Guidance - الإرشاد النفسي والتوجيه", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Primary Education Mathematics Teaching - تدريس رياضيات التعليم الأساسي", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Preschool Education - تعليم ما قبل المدرسة", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "English", price: 4410, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation - العلاج الطبيعي وإعادة التأهيل", language: "Turkish", price: 3150, degree: "Bachelor" },
+                { name: "Pharmacy - الصيدلة", language: "English", price: 10800, degree: "Bachelor" },
+                { name: "Pharmacy - الصيدلة", language: "Turkish", price: 8100, degree: "Bachelor" },
+                { name: "Occupational Therapy - العلاج المهني", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics - التغذية والحمية", language: "Turkish", price: 2925, degree: "Bachelor" },
+                { name: "Nursing - التمريض", language: "English", price: 4410, degree: "Bachelor" },
+                { name: "Nursing - التمريض", language: "Turkish", price: 3150, degree: "Bachelor" },
+                { name: "Molecular Biology and Genetics - البيولوجيا الجزيئية والوراثة", language: "English", price: 3780, degree: "Bachelor" },
+                { name: "Molecular Biology and Genetics - البيولوجيا الجزيئية والوراثة", language: "Turkish", price: 2700, degree: "Bachelor" },
+                { name: "Midwifery - القبالة", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Medicine - الطب", language: "English", price: 18000, degree: "Bachelor" },
+                { name: "Medicine - الطب", language: "Turkish", price: 14580, degree: "Bachelor" },
+                { name: "Interior Architecture - العمارة الداخلية", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "English Language Teaching - تدريس اللغة الإنجليزية", language: "EN 30%", price: 2475, degree: "Bachelor" },
+                { name: "Dentistry - طب الأسنان", language: "English", price: 18000, degree: "Bachelor" },
+                { name: "Dentistry - طب الأسنان", language: "Turkish", price: 14580, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب", language: "English", price: 4095, degree: "Bachelor" },
+                { name: "Computer Engineering - هندسة الحاسوب", language: "Turkish", price: 3150, degree: "Bachelor" },
+                { name: "Child Development - تنمية الطفل", language: "Turkish", price: 2475, degree: "Bachelor" },
+                { name: "Biomedical Engineering - الهندسة الطبية الحيوية", language: "English", price: 4095, degree: "Bachelor" },
+                { name: "Audiology - علم السمع", language: "Turkish", price: 2250, degree: "Bachelor" }
+            ],
+            "Fenerbahçe University - جامعة فنار بهتشه": [
+                { name: "Electrical and Electronics Engineering (English) - هندسة الكهرباء والالكترونيات (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Sports Sciences (Turkish) - علوم الرياضة (تركي)", language: "Turkish", price: 7125, degree: "Doctorate" },
+                { name: "Business Administration (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 7125, degree: "Doctorate" },
+                { name: "Sports Sciences (Turkish) - علوم الرياضة (تركي)", language: "Turkish", price: 2137.5, degree: "Master" },
+                { name: "Political Science and International Relations (English) - العلوم السياسية والعلاقات الدولية (إنجليزي)", language: "English", price: 2850, degree: "Master" },
+                { name: "Political Science and International Relations (English) - العلوم السياسية والعلاقات الدولية (إنجليزي)", language: "English", price: 2137.5, degree: "Master" },
+                { name: "Internal Medicine Nursing (Turkish) - تمريض الطب الباطني (تركي)", language: "Turkish", price: 2850, degree: "Master" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 2850, degree: "Master" },
+                { name: "Business Administration (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 2137.5, degree: "Master" },
+                { name: "Radiotherapy (Turkish) - العلاج الإشعاعي (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Physiotherapy (English) - العلاج الطبيعي (إنجليزي)", language: "English", price: 1900, degree: "Associate" },
+                { name: "Physiotherapy (Turkish) - العلاج الطبيعي (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Pharmacy Services (Turkish) - خدمات الصيدلة (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Operation Room Services (Turkish) - خدمات غرفة العمليات (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Oral and Dental Health (Turkish) - صحة الفم والأسنان (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Medical Laboratory Techniques (Turkish) - تقنيات المختبرات الطبية (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Orthopedic Prosthesis and Orhotics (Turkish) - الأطراف الصناعية والتقويم (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Medical Imaging Techniques (Turkish) - تقنيات التصوير الطبي (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Pathology Laboratory Techniques (Turkish) - تقنيات مختبرات الباثولوجيا (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "First and Emergency Aid (Turkish) - الإسعافات الأولية والطوارئ (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Dialysis (Turkish) - غسيل الكلى (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Dental Prosthesis (Turkish) - أطقم الأسنان (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Anesthesia (Turkish) - التخدير (تركي)", language: "Turkish", price: 1900, degree: "Associate" },
+                { name: "Advertising (Turkish) - الإعلان (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Sports Management (Turkish) - إدارة الرياضة (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Speech and Language Therapy (Turkish) - علاج النطق واللغة (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Software Engineering (English) - هندسة البرمجيات (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Radio, Television and Cinema (Turkish) - الإذاعة والتلفزيون والسينما (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Public Relations and Advertising (Turkish) - العلاقات العامة والإعلان (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Psychology (English) - علم النفس (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Political Science and International Relations (English) - العلوم السياسية والعلاقات الدولية (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (English) - العلاج الطبيعي والتأهيل (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (Turkish) - العلاج الطبيعي والتأهيل (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Physical Education And Sports Teaching (Turkish) - التربية الرياضية وتدريس الرياضة (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Pharmacy (English) - الصيدلة (إنجليزي)", language: "English", price: 7125, degree: "Bachelor" },
+                { name: "Pharmacy (Turkish) - الصيدلة (تركي)", language: "Turkish", price: 5700, degree: "Bachelor" },
+                { name: "Ergotherapy (Turkish) - العلاج الوظيفي (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics (Turkish) - التغذية والحمية (تركي)", language: "Turkish", price: 2850, degree: "Bachelor" },
+                { name: "Nursing (English) - التمريض (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Nursing (Turkish) - التمريض (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "New Media and Communication (Turkish) - الإعلام الجديد والاتصال (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "Midwifery (Turkish) - القبالة (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "Management Information Systems (English) - نظم المعلومات الإدارية (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "International Finance and banking (English) - التمويل الدولي والمصرفية (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (English) - العمارة الداخلية والتصميم البيئي (إنجليزي)", language: "English", price: 3800, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (Turkish) - العمارة الداخلية والتصميم البيئي (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "Industrial Engineering (English) - الهندسة الصناعية (إنجليزي)", language: "English", price: 3135, degree: "Bachelor" },
+                { name: "Exercise and Sport Sciences (Turkish) - علوم التمارين والرياضة (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "English Language and Literature (English) - اللغة الإنجليزية وآدابها (إنجليزي)", language: "English", price: 3135, degree: "Bachelor" },
+                { name: "Economics and Finance (English) - الاقتصاد والتمويل (إنجليزي)", language: "English", price: 3135, degree: "Bachelor" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 3135, degree: "Bachelor" },
+                { name: "Coaching Training (Turkish) - تدريب التدريب (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" },
+                { name: "Architecture (Turkish) - العمارة (تركي)", language: "Turkish", price: 2517.5, degree: "Bachelor" }
+            ],
+            "Işık University - جامعة إيشك": [
+                { name: "Art sciences (Turkish) - علوم الفن (تركي)", language: "Turkish", price: 7000, degree: "Doctorate" },
+                { name: "Electronics Engineering (English) - هندسة الإلكترونيات (إنجليزي)", language: "English", price: 9000, degree: "Doctorate" },
+                { name: "Contemporary Business (English) - الأعمال المعاصرة (إنجليزي)", language: "English", price: 9000, degree: "Doctorate" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 9500, degree: "Doctorate" },
+                { name: "Technologies and Innovation Management (English) - إدارة التقنيات والابتكار (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Management Information Systems (English) - نظم المعلومات الإدارية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "International Relations (English) - العلاقات الدولية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Information Technologies (English) - تكنولوجيا المعلومات (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Industrial Engineering (English) - الهندسة الصناعية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Mechanical Engineering (English) - الهندسة الميكانيكية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Executive Business Administration (English) - إدارة الأعمال التنفيذية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Electronics Engineering (English) - هندسة الإلكترونيات (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Civil Engineering (English) - الهندسة المدنية (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Applied Economics (English) - الاقتصاد التطبيقي (إنجليزي)", language: "English", price: 4250, degree: "Master" },
+                { name: "Industrial Design (Turkish) - التصميم الصناعي (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Visual Communication Design (Turkish) - تصميم الاتصال المرئي (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Cinema and Television (Turkish) - السينما والتلفزيون (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Software Engineering (English) - هندسة البرمجيات (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Psychology (English) - علم النفس (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Mechatronics Engineering (English) - هندسة الميكاترونكس (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Mechanical Engineering (English) - الهندسة الميكانيكية (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Management Information Systems (Turkish) - نظم المعلومات الإدارية (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Management Information Systems (English) - نظم المعلومات الإدارية (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "International Trade and Finance (English) - التجارة الدولية والتمويل (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "International Relations (English) - العلاقات الدولية (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (Turkish) - العمارة الداخلية والتصميم البيئي (تركي)", language: "Turkish", price: 3600, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (English) - العمارة الداخلية والتصميم البيئي (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Industrial Engineering (English) - الهندسة الصناعية (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering (English) - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Economics (English) - الاقتصاد (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Civil Engineering (English) - الهندسة المدنية (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Biomedical Engineering (English) - الهندسة الطبية الحيوية (إنجليزي)", language: "English", price: 4800, degree: "Bachelor" },
+                { name: "Architecture (English) - العمارة (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" }
+            ],
+            "Istanbul Atlas University - جامعة أطلس اسطنبول": [
+                { name: "Molecular Biology and Genetics (Turkish) - علم الأحياء الجزيئي والوراثة (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Internal Medicine Nursing (Turkish) - تمريض الطب الباطني (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Surgical Diseases Nursing (Turkish) - تمريض الأمراض الجراحية (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Physiotherapy and Rehabilitation (Turkish) - العلاج الطبيعي والتأهيل (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 6075, degree: "Master" },
+                { name: "Medical Biology and Genetics (Turkish) - علم الأحياء الطبي والوراثة (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Medical Biochemistry (Turkish) - الكيمياء الحيوية الطبية (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Medical Microbiology (Turkish) - علم الأحياء الدقيقة الطبية (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Histology and Embryology (Turkish) - علم الأنسجة والأجنة (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Ergotherapy (Turkish) - العلاج الوظيفي (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Anatomy (Turkish) - علم التشريح (تركي)", language: "Turkish", price: 3645, degree: "Master" },
+                { name: "Midwifery (Turkish) - القبالة (تركي)", language: "Turkish", price: 2835, degree: "Master" },
+                { name: "Electrical Electronic Engineering (English) - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 4050, degree: "Master" },
+                { name: "Computer Engineering (Turkish) - هندسة الحاسوب (تركي)", language: "Turkish", price: 4050, degree: "Master" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 4050, degree: "Master" },
+                { name: "Nutrition and Dietetics (Turkish) - التغذية والحمية (تركي)", language: "Turkish", price: 2835, degree: "Master" },
+                { name: "Information Technologies (Turkish) - تكنولوجيا المعلومات (تركي)", language: "Turkish", price: 4050, degree: "Master" },
+                { name: "Speech and Language Therapy (Turkish) - علاج النطق واللغة (تركي)", language: "Turkish", price: 9720, degree: "Master" },
+                { name: "Physiotherapy (Turkish) - العلاج الطبيعي (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Oral and Dental Health (Turkish) - صحة الفم والأسنان (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Computer Programming (Turkish) - برمجة الحاسوب (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Information Security Technology (Turkish) - تكنولوجيا أمن المعلومات (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Opticianry (Turkish) - صناعة النظارات (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Operation Room Services (Turkish) - خدمات غرفة العمليات (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Medical Laboratory Techniques (Turkish) - تقنيات المختبرات الطبية (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Medical Imaging Techniques (Turkish) - تقنيات التصوير الطبي (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "First and Emergency Aid (Turkish) - الإسعافات الأولية والطوارئ (تركي)", language: "Turkish", price: 1530, degree: "Associate" },
+                { name: "Dialysis (Turkish) - غسيل الكلى (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Dental Prosthesis (Turkish) - أطقم الأسنان (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Anesthesia (Turkish) - التخدير (تركي)", language: "Turkish", price: 1823, degree: "Associate" },
+                { name: "Translation and Interpretation (English) (EN 30%) - الترجمة والترجمة الفورية (إنجليزي)", language: "English", price: 3240, degree: "Bachelor" },
+                { name: "Speech and Language Therapy (Turkish) - علاج النطق واللغة (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Software Engineering (English) - هندسة البرمجيات (إنجليزي)", language: "English", price: 4253, degree: "Bachelor" },
+                { name: "Psychology (English) - علم النفس (إنجليزي)", language: "English", price: 4645, degree: "Bachelor" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (English) - العلاج الطبيعي والتأهيل (إنجليزي)", language: "English", price: 4050, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (Turkish) - العلاج الطبيعي والتأهيل (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Ergotherapy (Turkish) - العلاج الوظيفي (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics (Turkish) - التغذية والحمية (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Nursing (English) - التمريض (إنجليزي)", language: "English", price: 4050, degree: "Bachelor" },
+                { name: "Nursing (Turkish) - التمريض (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Molecular Biology and Genetics (English) - علم الأحياء الجزيئي والوراثة (إنجليزي)", language: "English", price: 3848, degree: "Bachelor" },
+                { name: "Midwifery (Turkish) - القبالة (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Medicine (English) - الطب (إنجليزي)", language: "English", price: 18630, degree: "Bachelor" },
+                { name: "Medicine (Turkish) - الطب (تركي)", language: "Turkish", price: 14175, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (Turkish) - العمارة الداخلية والتصميم البيئي (تركي)", language: "Turkish", price: 3038, degree: "Bachelor" },
+                { name: "Industrial Engineering (English) - الهندسة الصناعية (إنجليزي)", language: "English", price: 3848, degree: "Bachelor" },
+                { name: "English Language and Literature (EN 30%) - اللغة الإنجليزية وآدابها (إنجليزي)", language: "English", price: 3240, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering (English) - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 3848, degree: "Bachelor" },
+                { name: "Dentistry (English) - طب الأسنان (إنجليزي)", language: "English", price: 17213, degree: "Bachelor" },
+                { name: "Dentistry (Turkish) - طب الأسنان (تركي)", language: "Turkish", price: 13365, degree: "Bachelor" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 4050, degree: "Bachelor" },
+                { name: "Computer Engineering (Turkish) - هندسة الحاسوب (تركي)", language: "Turkish", price: 3240, degree: "Bachelor" },
+                { name: "Biomedical Engineering (English) - الهندسة الطبية الحيوية (إنجليزي)", language: "English", price: 4050, degree: "Bachelor" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 3969, degree: "Bachelor" }
+            ],
+            "Istanbul Bilgi University - جامعة بلجي اسطنبول": [
+                { name: "Public Relations and Advertising (Turkish) - العلاقات العامة والإعلان (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Physiotherapy (Turkish) - العلاج الطبيعي (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Pathology Laboratory Techniques (Turkish) - تقنيات مختبرات الباثولوجيا (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Oral and Dental Health (Turkish) - صحة الفم والأسنان (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Opticianry (Turkish) - صناعة النظارات (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Operating Room Services (Turkish) - خدمات غرفة العمليات (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Medical Imaging Techniques (Turkish) - تقنيات التصوير الطبي (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Justice (Turkish) - العدالة (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "International Trade (Turkish) - التجارة الدولية (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Interior Space Design (Turkish) - تصميم المساحات الداخلية (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Information Security Technologies (Turkish) - تكنولوجيا أمن المعلومات (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Graphic Design (Turkish) - التصميم الجرافيكي (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "First and Emergency Aid (Turkish) - الإسعافات الأولية والطوارئ (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Fashion Design (Turkish) - تصميم الأزياء (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Emergency and Disaster Management (Turkish) - إدارة الطوارئ والكوارث (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Electro Neurophysiology (Turkish) - الفيزيولوجيا الكهربية العصبية (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "E-Commerce and Marketing (Turkish) - التجارة الإلكترونية والتسويق (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Dialysis (Turkish) - غسيل الكلى (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Dental Prosthesis (Turkish) - أطقم الأسنان (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Cooking (Turkish) - الطهي (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Construction Technologies (Turkish) - تكنولوجيا البناء (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Computer Programming (Turkish) - برمجة الحاسوب (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Civil Aviation Cabin Services (Turkish) - خدمات مقصورة الطيران المدني (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Civil Aviation Transportation Management (Turkish) - إدارة نقل الطيران المدني (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Child Development (Turkish) - تنمية الطفل (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Business Administration (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Banking and Insurance (Turkish) - الخدمات المصرفية والتأمين (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Audiometry (Turkish) - قياس السمع (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Architectural Restoration (Turkish) - الترميم المعماري (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Anesthesia (Turkish) - التخدير (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Accounting and Taxation (Turkish) - المحاسبة والضرائب (تركي)", language: "Turkish", price: 2000, degree: "Associate" },
+                { name: "Visual Communication Design (English) - تصميم الاتصال المرئي (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Tourism Management (English) - إدارة السياحة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Television Reporting and Programming (English) - الإبلاغ التلفزيوني والبرمجة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Sports Management (English) - إدارة الرياضة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Sociology (English) - علم الاجتماع (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Radio Television and Film (English) - الإذاعة والتلفزيون والسينما (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Public Relations and Publicity (English) - العلاقات العامة والدعاية (إنجليزي)", language: "English", price: 8100, degree: "Bachelor" },
+                { name: "Psychology (English) - علم النفس (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Political Science and Public Administration (English) - العلوم السياسية والإدارة العامة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (Turkish) - العلاج الطبيعي والتأهيل (تركي)", language: "Turkish", price: 6950, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics (Turkish) - التغذية والحمية (تركي)", language: "Turkish", price: 6950, degree: "Bachelor" },
+                { name: "Nursing (Turkish) - التمريض (تركي)", language: "Turkish", price: 6950, degree: "Bachelor" },
+                { name: "New Media and Communication (English) - الإعلام الجديد والاتصال (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Music (English) - الموسيقى (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Mechatronics Engineering (English) - هندسة الميكاترونكس (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Mechanical Engineering (English) - الهندسة الميكانيكية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Mathematics (English) - الرياضيات (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Marketing (English) - التسويق (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Management of Performing Arts (English) - إدارة الفنون الأدائية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Management Information Systems (English) - نظم المعلومات الإدارية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Logistics Management (English) - إدارة اللوجستيات (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Law (EN 30%) - القانون (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "International Trade and Business (English) - التجارة الدولية والأعمال (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "International Relations (English) - العلاقات الدولية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "International Finance (English) - التمويل الدولي (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Interior Design (English) - التصميم الداخلي (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Industrial Engineering (English) - الهندسة الصناعية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Industrial Design (English) - التصميم الصناعي (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "History (English) - التاريخ (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Genetics and Bioengineering (English) - الوراثة والهندسة الحيوية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts (English) - علم الطهي والفنون الطهوية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Fashion and Textile design (English) - تصميم الأزياء والمنسوجات (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "English Language and Literature (English) - اللغة الإنجليزية وآدابها (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Energy Systems Engineering (English) - هندسة أنظمة الطاقة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering (English) - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Economics and Finance (English) - الاقتصاد والتمويل (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Economics (English) - الاقتصاد (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Digital Game Design (English) - تصميم الألعاب الرقمية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Computer Engineering (English) - هندسة الحاسوب (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Comparative Literature (English) - الأدب المقارن (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Communication Design and Management (English) - تصميم الاتصال والإدارة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Civil Engineering (English) - الهندسة المدنية (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Child Development (Turkish) - تنمية الطفل (تركي)", language: "Turkish", price: 6950, degree: "Bachelor" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Aviation Management (EN 30%) - إدارة الطيران (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Arts and Cultural Management (English) - إدارة الفنون والثقافة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Architecture (English) - العمارة (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" },
+                { name: "Advertising (English) - الإعلان (إنجليزي)", language: "English", price: 6950, degree: "Bachelor" }
+            ],
+            "Istanbul Esenyurt University - جامعة اسنيورت اسطنبول": [
+                { name: "Management Organization (Turkish) - تنظيم الإدارة (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Management Organization (Turkish) - تنظيم الإدارة (تركي)", language: "Turkish", price: 6500, degree: "Master" },
+                { name: "Civil Engineering (Turkish) - الهندسة المدنية (تركي)", language: "Turkish", price: 5750, degree: "Doctorate" },
+                { name: "Business Management (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 5750, degree: "Doctorate" },
+                { name: "Global Politics and International Relations (English) - السياسة العالمية والعلاقات الدولية (إنجليزي)", language: "English", price: 3500, degree: "Master" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 3500, degree: "Master" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 4500, degree: "Master" },
+                { name: "Logistics Management (Turkish) - إدارة اللوجستيات (تركي)", language: "Turkish", price: 6500, degree: "Master" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 5500, degree: "Master" },
+                { name: "Business Management (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Occupational Health And Safety (Turkish) - الصحة والسلامة المهنية (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Health Institutions Management (Turkish) - إدارة المؤسسات الصحية (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Real Estate Finance and Valuation (Turkish) - تمويل العقارات والتقييم (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Finance (Turkish) - التمويل (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Industrial Engineering (Turkish) - الهندسة الصناعية (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Exercise And Sports Sciences (Turkish) - علوم التمارين والرياضة (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Sports Sciences (Turkish) - علوم الرياضة (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Physical Education And Sports (Turkish) - التربية البدنية والرياضة (تركي)", language: "Turkish", price: 3250, degree: "Master" },
+                { name: "Business Management (DE) (Turkish) - إدارة الأعمال (DE) (تركي)", language: "Turkish", price: 2500, degree: "Master" },
+                { name: "Logistics Management (Turkish) - إدارة اللوجستيات (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 4500, degree: "Master" },
+                { name: "Clinical Psychology (Turkish) - علم النفس السريري (تركي)", language: "Turkish", price: 9250, degree: "Master" },
+                { name: "Business Management (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Occupational Health And Safety (Turkish) - الصحة والسلامة المهنية (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Health Institutions Management (Turkish) - إدارة المؤسسات الصحية (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Real Estate Finance and Valuation (Turkish) - تمويل العقارات والتقييم (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Finance (Turkish) - التمويل (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Civil Engineering (Turkish) - الهندسة المدنية (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Industrial Engineering (Turkish) - الهندسة الصناعية (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Movement And Training sciences in sports (Turkish) - علوم الحركة والتدريب في الرياضة (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Exercise And Sports Scinces (Turkish) - علوم التمارين والرياضة (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Sports Sciences (Turkish) - علوم الرياضة (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Physical Education And Sports (Turkish) - التربية البدنية والرياضة (تركي)", language: "Turkish", price: 2400, degree: "Master" },
+                { name: "Construction Technologies (Turkish) - تكنولوجيا البناء (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Food Technologies (Turkish) - تكنولوجيا الأغذية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Electric (Turkish) - الكهرباء (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Banking and Insurance (Turkish) - الخدمات المصرفية والتأمين (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Tourism Guidance (Turkish) - إرشاد السياحة (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Civil Aviation Cabin Services (Turkish) - خدمات مقصورة الطيران المدني (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Civil Aviation Transportation Management (Turkish) - إدارة نقل الطيران المدني (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Radio and Television Programming (Turkish) - برمجة الراديو والتلفزيون (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Logistics (Turkish) - اللوجستيات (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Business Management (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Occupational Health And Safety (Turkish) - الصحة والسلامة المهنية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Public Relation and Publicity (Turkish) - العلاقات العامة والدعاية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Graphic Design (Turkish) - التصميم الجرافيكي (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "E-Trade and Marketing (Turkish) - التجارة الإلكترونية والتسويق (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Foreign Trade (Turkish) - التجارة الخارجية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Information Security Technologies (Turkish) - تكنولوجيا أمن المعلومات (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Computer Programming (Turkish) - برمجة الحاسوب (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Computer Aided Design and Animation (Turkish) - التصميم والرسوم المتحركة بمساعدة الحاسوب (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Computer Technology (Turkish) - تكنولوجيا الحاسوب (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Internet And Network Technology (Turkish) - تكنولوجيا الإنترنت والشبكات (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Cooking (Turkish) - الطهي (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Medical Laboratory Techniques (Turkish) - تقنيات المختبرات الطبية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Medical Imaging Techniques (Turkish) - تقنيات التصوير الطبي (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Medical Documentation and Secretary (Turkish) - التوثيق الطبي والسكرتارية (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "First Aid And Emergency (Turkish) - الإسعافات الأولية والطوارئ (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Physiotherapy (Turkish) - العلاج الطبيعي (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Child Development (Turkish) - تنمية الطفل (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Anesthesia (Turkish) - التخدير (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Operating Room Services (Turkish) - خدمات غرفة العمليات (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Oral and Dental Health (Turkish) - صحة الفم والأسنان (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Dental Prosthesis (Turkish) - أطقم الأسنان (تركي)", language: "Turkish", price: 1650, degree: "Associate" },
+                { name: "Software Engineering (English) - هندسة البرمجيات (إنجليزي)", language: "English", price: 3600, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering (English) - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 3000, degree: "Bachelor" },
+                { name: "Political Science and International Relations (English) - العلوم السياسية والعلاقات الدولية (إنجليزي)", language: "English", price: 3000, degree: "Bachelor" },
+                { name: "Economics and Finance (English) - الاقتصاد والتمويل (إنجليزي)", language: "English", price: 3000, degree: "Bachelor" },
+                { name: "Business Administration (English) - إدارة الأعمال (إنجليزي)", language: "English", price: 3000, degree: "Bachelor" },
+                { name: "Nursing (Turkish) - التمريض (تركي)", language: "Turkish", price: 3100, degree: "Bachelor" },
+                { name: "Sports Management (Turkish) - إدارة الرياضة (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Coaching Training (Turkish) - تدريب التدريب (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts (Turkish) - علم الطهي والفنون الطهوية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Digital Game Design (Turkish) - تصميم الألعاب الرقمية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "New Media and Communication (Turkish) - الإعلام الجديد والاتصال (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Sociology (Turkish) - علم الاجتماع (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Radio, Television and Cinema (Turkish) - الإذاعة والتلفزيون والسينما (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Psychology (Turkish) - علم النفس (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Public Relations and Advertising (Turkish) - العلاقات العامة والإعلان (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Social Services (Turkish) - الخدمات الاجتماعية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Midwifery (Turkish) - القبالة (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Physiotherapy and Rehabilitation (Turkish) - العلاج الطبيعي والتأهيل (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Child Development (Turkish) - تنمية الطفل (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Nutrition and Dietetics (Turkish) - التغذية والحمية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design (Turkish) - العمارة الداخلية والتصميم البيئي (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Interior Design (Turkish) - التصميم الداخلي (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Computer Engineering (Turkish) - هندسة الحاسوب (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Management Information Systems (Turkish) - نظم المعلومات الإدارية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "E-commerce and Management (Turkish) - التجارة الإلكترونية والإدارة (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "International Trade and Finance (Turkish) - التجارة الدولية والتمويل (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Political Science and International Relations (Turkish) - العلوم السياسية والعلاقات الدولية (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Logistics Management (Turkish) - إدارة اللوجستيات (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Business Administration (Turkish) - إدارة الأعمال (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" },
+                { name: "Aviation Management (Turkish) - إدارة الطيران (تركي)", language: "Turkish", price: 2200, degree: "Bachelor" }
+            ],
+            "Özyeğin University - جامعة أوزيجين": [
+                { name: "Psychology - علم النفس (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Pilotage - طيران (إنجليزي)", language: "English", price: 12000, degree: "Bachelor" },
+                { name: "Mechanical Engineering - الهندسة الميكانيكية (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Management Information Systems - نظم معلومات الإدارة (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Law - قانون (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "International Trade and Business - التجارة الدولية والأعمال (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "International Relations - العلاقات الدولية (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "International Finance - التمويل الدولي (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Interior Architecture and Environmental Design - العمارة الداخلية والتصميم البيئي (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Industrial Engineering - الهندسة الصناعية (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Hotel Management - إدارة الفنادق (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Gastronomy and Culinary Arts - فنون الطهي والطهو (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Entrepreneurship - ريادة الأعمال (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Electrical and Electronic Engineering - الهندسة الكهربائية والإلكترونية (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Economics - الاقتصاد (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Computer Science - علوم الحاسوب (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Communication Design - تصميم الاتصالات (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Civil Engineering - الهندسة المدنية (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Business Administration - إدارة الأعمال (إنجليزي)", language: "English", price: 9600, degree: "Bachelor" },
+                { name: "Aviation Management - إدارة الطيران (إنجليزي)", language: "English", price: 600, degree: "Bachelor" },
+                { name: "Architecture - عمارة (تركي)", language: "Turkish", price: 600, degree: "Bachelor" },
+                { name: "Architecture - عمارة (إنجليزي)", language: "English", price: 600, degree: "Bachelor" }
+            ],
+        },
+        "ماليزيا": {
 
-            },
-            "المجر": {
+        },
+        "المجر": {
 
-            }
-        };
-        // تعطيل الحقول عند التحميل
-        document.getElementById("majorUniversity").disabled = true;
-        document.getElementById("languageUniversity").disabled = true;
-        document.getElementById("university").disabled = true;
-        document.getElementById("language").disabled = true;
-        document.getElementById("searchMajor").disabled = true;
-
-        // تعيين الدرجة الافتراضية إلى Bachelor
-        document.getElementById("degree").value = "Bachelor";
-
-        // تعبئة قائمة الدول عند تحميل الصفحة (البحث عن التخصص)
-        function populateCountries() {
-            let countrySelect = document.getElementById("country");
-            countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
-
-            for (let country in data) {
-                let option = document.createElement("option");
-                option.value = country;
-                option.textContent = country;
-                countrySelect.appendChild(option);
-            }
         }
+    };
+    // تعطيل الحقول عند التحميل
+    document.getElementById("majorUniversity").disabled = true;
+    document.getElementById("languageUniversity").disabled = true;
+    document.getElementById("university").disabled = true;
+    document.getElementById("language").disabled = true;
+    document.getElementById("searchMajor").disabled = true;
 
-        // إعادة تعيين الحقول عند تغيير الدولة (البحث عن التخصص)
-        function updateUniversities() {
-            let country = document.getElementById("country").value;
-            let universitySelect = document.getElementById("university");
+    // تعيين الدرجة الافتراضية إلى Bachelor
+    document.getElementById("degree").value = "Bachelor";
 
-            if (country) {
-                universitySelect.innerHTML = '<option value="">-- اختر الجامعة --</option>';
-                let universities = data[country];
+    // تعبئة قائمة الدول عند تحميل الصفحة (البحث عن التخصص)
+    function populateCountries() {
+        let countrySelect = document.getElementById("country");
+        countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
 
-                for (let uni in universities) {
-                    let option = document.createElement("option");
-                    option.value = uni;
-                    option.textContent = uni;
-                    universitySelect.appendChild(option);
-                }
-
-                universitySelect.disabled = false;
-            } else {
-                universitySelect.disabled = true;
-            }
-
-            // إعادة تعيين الحقول الأخرى
-            resetLanguageAndSearch();
+        for (let country in data) {
+            let option = document.createElement("option");
+            option.value = country;
+            option.textContent = country;
+            countrySelect.appendChild(option);
         }
+    }
 
-        // تفعيل حقل اللغة عند اختيار الجامعة (البحث عن التخصص)
-        function updateLanguageOptions() {
-            let languageSelect = document.getElementById("language");
-            let country = document.getElementById("country").value;
-            let university = document.getElementById("university").value;
+    // إعادة تعيين الحقول عند تغيير الدولة (البحث عن التخصص)
+    function updateUniversities() {
+        let country = document.getElementById("country").value;
+        let universitySelect = document.getElementById("university");
 
-            if (country && university) {
-                let languages = new Set(data[country][university].map(major => major.language));
-
-                languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
-
-                languages.forEach(lang => {
-                    let option = document.createElement("option");
-                    option.value = lang;
-                    option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
-                    languageSelect.appendChild(option);
-                });
-
-                languageSelect.disabled = false;
-            } else {
-                languageSelect.disabled = true;
-            }
-
-            // إعادة تعيين الحقول الأخرى
-            resetSearchAndPrice();
-        }
-
-        // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
-        function enableSearchMajor() {
-            let languageSelect = document.getElementById("language");
-            let searchMajorInput = document.getElementById("searchMajor");
-
-            if (languageSelect.value) {
-                searchMajorInput.disabled = false;
-            } else {
-                searchMajorInput.disabled = true;
-            }
-
-            // إعادة تعيين الحقول الأخرى
-            resetSearchAndPrice();
-        }
-
-        // إعادة تعيين اللغة والبحث والسعر
-        function resetLanguageAndSearch() {
-            document.getElementById("language").value = "";
-            document.getElementById("language").disabled = true;
-            document.getElementById("searchMajor").value = "";
-            document.getElementById("searchMajor").disabled = true;
-            document.getElementById("suggestions").style.display = "none";
-            document.getElementById("price").innerHTML = "";
-        }
-
-        // إعادة تعيين البحث والسعر
-        function resetSearchAndPrice() {
-            document.getElementById("searchMajor").value = "";
-            document.getElementById("suggestions").style.display = "none";
-            document.getElementById("price").innerHTML = "";
-        }
-
-        // البحث عن التخصصات (البحث عن التخصص)
-        function searchMajor() {
-            let searchText = document.getElementById("searchMajor").value.toLowerCase();
-            let country = document.getElementById("country").value;
-            let university = document.getElementById("university").value;
-            let language = document.getElementById("language").value;
-            let degree = document.getElementById("degree").value;
-            let suggestionsBox = document.getElementById("suggestions");
-
-            suggestionsBox.innerHTML = "";
-            suggestionsBox.style.display = "none";
-
-            if (country && university && language && degree && searchText) {
-                let filteredMajors = data[country][university].filter(major =>
-                    
-                    major.language === language &&
-                    major.degree === degree &&
-                    major.name.toLowerCase().includes(searchText)
-                );
-
-                if (filteredMajors.length > 0) {
-                    suggestionsBox.style.display = "block";
-
-                    filteredMajors.forEach(major => {
-                        let div = document.createElement("div");
-                        div.textContent = major.name;
-                        div.onclick = () => selectMajor(major);
-                        suggestionsBox.appendChild(div);
-                    });
-                } else {
-                    suggestionsBox.innerHTML = "<div style='padding: 10px; text-align: center;'>لا توجد نتائج</div>";
-                    suggestionsBox.style.display = "block";
-                }
-            }
-        }
-
-        // عند اختيار تخصص (البحث عن التخصص)
-        function selectMajor(major) {
-            document.getElementById("searchMajor").value = major.name;
-            document.getElementById("suggestions").style.display = "none";
-            document.getElementById("price").innerHTML = `<div style='display: flex; justify-content: center; gap: 20px;'>
-                <div style='background: #f0f0f0; padding: 10px; border-radius: 10px;'>
-                    <strong>السعر العادي: $</strong> ${major.price} 
-                </div>
-                <div style='background: #d4edda; padding: 10px; border-radius: 10px;'>
-                    <strong>سعر المنحة: </strong> ${"not found"} $
-                </div>
-            </div>`;
-        }
-
-        function updateBudget() {
-            const minBudget = document.getElementById("minBudget");
-            const maxBudget = document.getElementById("maxBudget");
-            const minBudgetValue = document.getElementById("minBudgetValue");
-            const maxBudgetValue = document.getElementById("maxBudgetValue");
-            
-            // الحصول على القيم الحالية
-            let minVal = parseInt(minBudget.value);
-            let maxVal = parseInt(maxBudget.value);
-            
-            // التأكد من أن الحد الأدنى لا يتجاوز الحد الأقصى
-            if (minVal > maxVal) {
-                minVal = maxVal;
-                minBudget.value = minVal;
-            }
-            
-            // التأكد من أن الحد الأقصى لا يقل عن الحد الأدنى
-            if (maxVal < minVal) {
-                maxVal = minVal;
-                maxBudget.value = maxVal;
-            }
-            
-            // تحديث القيم المعروضة
-            minBudgetValue.textContent = minVal;
-            maxBudgetValue.textContent = maxVal;
-        }
-
-        // تسجيل الخروج
-        function logout() {
-            localStorage.removeItem("loggedIn");
-            window.location.href = "login.html";
-        }
-
-        // تعبئة قائمة الدول للبحث عن الجامعة
-        function populateCountriesForUniversitySearch() {
-            let countrySelect = document.getElementById("countryUniversity");
-            countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
-
-            for (let country in data) {
-                let option = document.createElement("option");
-                option.value = country;
-                option.textContent = country;
-                countrySelect.appendChild(option);
-            }
-        }
-
-        // إعادة تعيين الحقول عند تغيير الدولة (البحث عن الجامعة)
-        function updateMajorsForUniversitySearch() {
-            let country = document.getElementById("countryUniversity").value;
-            let majorInput = document.getElementById("majorUniversity");
-
-            if (country) {
-                majorInput.disabled = false;
-            } else {
-                majorInput.disabled = true;
-            }
-
-            // تفعيل حقل اللغة بعد اختيار الدولة
-            updateLanguageOptionsForUniversitySearch();
-        }
-
-        // تفعيل حقل اللغة عند اختيار الدولة والتخصص (البحث عن الجامعة)
-        function updateLanguageOptionsForUniversitySearch() {
-            let languageSelect = document.getElementById("languageUniversity");
-            let country = document.getElementById("countryUniversity").value;
-            let major = document.getElementById("majorUniversity").value.toLowerCase();
-
-            if (country && major) {
-                let universities = data[country];
-                let languages = new Set();
-
-                for (let uni in universities) {
-                    universities[uni].forEach(program => {
-                        if (program.name.toLowerCase().includes(major)) {
-                            languages.add(program.language);
-                        }
-                    });
-                }
-
-                languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
-
-                languages.forEach(lang => {
-                    let option = document.createElement("option");
-                    option.value = lang;
-                    option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
-                    languageSelect.appendChild(option);
-                });
-
-                languageSelect.disabled = false;
-            } else {
-                languageSelect.disabled = true;
-            }
-        }
-
-        // البحث عن الجامعات بناءً على المدخلات
-        function searchUniversities() {
-            let country = document.getElementById("countryUniversity").value;
-            let major = document.getElementById("majorUniversity").value.toLowerCase();
-            let degree = document.getElementById("degreeUniversity").value;
-            let language = document.getElementById("languageUniversity").value;
-            let minBudget = document.getElementById("minBudget").value;
-            let maxBudget = document.getElementById("maxBudget").value;
-            let universityList = document.getElementById("universityList");
-
-            universityList.innerHTML = ""; // مسح النتائج القديمة
-            universityList.style.display = "none"; // إخفاء القائمة
-
-            if (!country || !major || !degree || !language) {
-                alert("يرجى ملء جميع الحقول!");
-                return;
-            }
-
+        if (country) {
+            universitySelect.innerHTML = '<option value="">-- اختر الجامعة --</option>';
             let universities = data[country];
-            let results = [];
+
+            for (let uni in universities) {
+                let option = document.createElement("option");
+                option.value = uni;
+                option.textContent = uni;
+                universitySelect.appendChild(option);
+            }
+
+            universitySelect.disabled = false;
+        } else {
+            universitySelect.disabled = true;
+        }
+
+        // إعادة تعيين الحقول الأخرى
+        resetLanguageAndSearch();
+    }
+
+    // تفعيل حقل اللغة عند اختيار الجامعة (البحث عن التخصص)
+    function updateLanguageOptions() {
+        let languageSelect = document.getElementById("language");
+        let country = document.getElementById("country").value;
+        let university = document.getElementById("university").value;
+
+        if (country && university) {
+            let languages = new Set(data[country][university].map(major => major.language));
+
+            languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
+
+            languages.forEach(lang => {
+                let option = document.createElement("option");
+                option.value = lang;
+                option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
+                languageSelect.appendChild(option);
+            });
+
+            languageSelect.disabled = false;
+        } else {
+            languageSelect.disabled = true;
+        }
+
+        // إعادة تعيين الحقول الأخرى
+        resetSearchAndPrice();
+    }
+
+    // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
+    function enableSearchMajor() {
+        let languageSelect = document.getElementById("language");
+        let searchMajorInput = document.getElementById("searchMajor");
+
+        if (languageSelect.value) {
+            searchMajorInput.disabled = false;
+        } else {
+            searchMajorInput.disabled = true;
+        }
+
+        // إعادة تعيين الحقول الأخرى
+        resetSearchAndPrice();
+    }
+
+    // إعادة تعيين اللغة والبحث والسعر
+    function resetLanguageAndSearch() {
+        document.getElementById("language").value = "";
+        document.getElementById("language").disabled = true;
+        document.getElementById("searchMajor").value = "";
+        document.getElementById("searchMajor").disabled = true;
+        document.getElementById("suggestions").style.display = "none";
+        document.getElementById("price").innerHTML = "";
+    }
+
+    // إعادة تعيين البحث والسعر
+    function resetSearchAndPrice() {
+        document.getElementById("searchMajor").value = "";
+        document.getElementById("suggestions").style.display = "none";
+        document.getElementById("price").innerHTML = "";
+    }
+
+    // البحث عن التخصصات (البحث عن التخصص)
+    function searchMajor() {
+        let searchText = document.getElementById("searchMajor").value.toLowerCase();
+        let country = document.getElementById("country").value;
+        let university = document.getElementById("university").value;
+        let language = document.getElementById("language").value;
+        let degree = document.getElementById("degree").value;
+        let suggestionsBox = document.getElementById("suggestions");
+
+        suggestionsBox.innerHTML = "";
+        suggestionsBox.style.display = "none";
+
+        if (country && university && language && degree && searchText) {
+            let filteredMajors = data[country][university].filter(major =>
+                
+                major.language === language &&
+                major.degree === degree &&
+                major.name.toLowerCase().includes(searchText)
+            );
+
+            if (filteredMajors.length > 0) {
+                suggestionsBox.style.display = "block";
+
+                filteredMajors.forEach(major => {
+                    let div = document.createElement("div");
+                    div.textContent = major.name;
+                    div.onclick = () => selectMajor(major);
+                    suggestionsBox.appendChild(div);
+                });
+            } else {
+                suggestionsBox.innerHTML = "<div style='padding: 10px; text-align: center;'>لا توجد نتائج</div>";
+                suggestionsBox.style.display = "block";
+            }
+        }
+    }
+
+    // عند اختيار تخصص (البحث عن التخصص)
+    function selectMajor(major) {
+        document.getElementById("searchMajor").value = major.name;
+        document.getElementById("suggestions").style.display = "none";
+        document.getElementById("price").innerHTML = `<div style='display: flex; justify-content: center; gap: 20px;'>
+            <div style='background: #f0f0f0; padding: 10px; border-radius: 10px;'>
+                <strong>السعر العادي: $</strong> ${major.price} 
+            </div>
+            <div style='background: #d4edda; padding: 10px; border-radius: 10px;'>
+                <strong>سعر المنحة: </strong> ${"not found"} $
+            </div>
+        </div>`;
+    }
+
+    function updateBudget() {
+        const minBudget = document.getElementById("minBudget");
+        const maxBudget = document.getElementById("maxBudget");
+        const minBudgetValue = document.getElementById("minBudgetValue");
+        const maxBudgetValue = document.getElementById("maxBudgetValue");
+        
+        // الحصول على القيم الحالية
+        let minVal = parseInt(minBudget.value);
+        let maxVal = parseInt(maxBudget.value);
+        
+        // التأكد من أن الحد الأدنى لا يتجاوز الحد الأقصى
+        if (minVal > maxVal) {
+            minVal = maxVal;
+            minBudget.value = minVal;
+        }
+        
+        // التأكد من أن الحد الأقصى لا يقل عن الحد الأدنى
+        if (maxVal < minVal) {
+            maxVal = minVal;
+            maxBudget.value = maxVal;
+        }
+        
+        // تحديث القيم المعروضة
+        minBudgetValue.textContent = minVal;
+        maxBudgetValue.textContent = maxVal;
+    }
+
+    // تعبئة قائمة الدول للبحث عن الجامعة
+    function populateCountriesForUniversitySearch() {
+        let countrySelect = document.getElementById("countryUniversity");
+        countrySelect.innerHTML = '<option value="">-- اختر الدولة --</option>';
+
+        for (let country in data) {
+            let option = document.createElement("option");
+            option.value = country;
+            option.textContent = country;
+            countrySelect.appendChild(option);
+        }
+    }
+
+    // إعادة تعيين الحقول عند تغيير الدولة (البحث عن الجامعة)
+    function updateMajorsForUniversitySearch() {
+        let country = document.getElementById("countryUniversity").value;
+        let majorInput = document.getElementById("majorUniversity");
+
+        if (country) {
+            majorInput.disabled = false;
+        } else {
+            majorInput.disabled = true;
+        }
+
+        // تفعيل حقل اللغة بعد اختيار الدولة
+        updateLanguageOptionsForUniversitySearch();
+    }
+
+    // تفعيل حقل اللغة عند اختيار الدولة والتخصص (البحث عن الجامعة)
+    function updateLanguageOptionsForUniversitySearch() {
+        let languageSelect = document.getElementById("languageUniversity");
+        let country = document.getElementById("countryUniversity").value;
+        let major = document.getElementById("majorUniversity").value.toLowerCase();
+
+        if (country && major) {
+            let universities = data[country];
+            let languages = new Set();
 
             for (let uni in universities) {
                 universities[uni].forEach(program => {
-                    if (
-                        program.name.toLowerCase().includes(major) && // البحث عن التخصص
-                        program.degree === degree && // تطابق الدرجة العلمية
-                        program.language === language && // تطابق اللغة
-                        (!minBudget || program.price >= parseInt(minBudget)) && // الميزانية الدنيا
-                        (!maxBudget || program.price <= parseInt(maxBudget)) // الميزانية القصوى
-                    ) {
-                        results.push({ university: uni, ...program });
+                    if (program.name.toLowerCase().includes(major)) {
+                        languages.add(program.language);
                     }
                 });
             }
 
-            // ترتيب النتائج تصاعديًا حسب السعر
-            results.sort((a, b) => b.price - a.price);
+            languageSelect.innerHTML = '<option value="">-- اختر اللغة --</option>';
 
+            languages.forEach(lang => {
+                let option = document.createElement("option");
+                option.value = lang;
+                option.textContent = lang === "Turkish" ? "تركي" : "إنجليزي";
+                languageSelect.appendChild(option);
+            });
 
-            if (results.length > 0) {
-                universityList.style.display = "block"; // إظهار القائمة
+            languageSelect.disabled = false;
+        } else {
+            languageSelect.disabled = true;
+        }
+    }
 
-                results.forEach(result => {
-                    let div = document.createElement("div");
-                    div.style.padding = "10px";
-                    div.style.border = "1px solid #ccc";
-                    div.style.margin = "5px 0";
-                    div.style.borderRadius = "5px";
-                    div.innerHTML = `<strong>${result.university}</strong>: ${result.name} (${result.language}) - <span style="color: green;">${result.price} $</span>`;
-                    universityList.appendChild(div);
-                });
-            } else {
-                universityList.innerHTML = "<div style='padding: 10px; text-align: center;'>لم يتم العثور على نتائج</div>";
-                universityList.style.display = "block"; // إظهار القائمة حتى لو كانت فارغة
-            }
+    // البحث عن الجامعات بناءً على المدخلات
+    function searchUniversities() {
+        let country = document.getElementById("countryUniversity").value;
+        let major = document.getElementById("majorUniversity").value.toLowerCase();
+        let degree = document.getElementById("degreeUniversity").value;
+        let language = document.getElementById("languageUniversity").value;
+        let minBudget = document.getElementById("minBudget").value;
+        let maxBudget = document.getElementById("maxBudget").value;
+        let universityList = document.getElementById("universityList");
+
+        universityList.innerHTML = ""; // مسح النتائج القديمة
+        universityList.style.display = "none"; // إخفاء القائمة
+
+        if (!country || !major || !degree || !language) {
+            alert("يرجى ملء جميع الحقول!");
+            return;
         }
 
-        // إظهار البحث عن التخصص
-        function showSearchByMajor() {
-            document.getElementById("searchByMajor").style.display = "block";
-            document.getElementById("searchByUniversity").style.display = "none";
+        let universities = data[country];
+        let results = [];
+
+        for (let uni in universities) {
+            universities[uni].forEach(program => {
+                if (
+                    program.name.toLowerCase().includes(major) && // البحث عن التخصص
+                    program.degree === degree && // تطابق الدرجة العلمية
+                    program.language === language && // تطابق اللغة
+                    (!minBudget || program.price >= parseInt(minBudget)) && // الميزانية الدنيا
+                    (!maxBudget || program.price <= parseInt(maxBudget)) // الميزانية القصوى
+                ) {
+                    results.push({ university: uni, ...program });
+                }
+            });
         }
 
-        // إظهار البحث عن الجامعة
-        function showSearchByUniversity() {
-            document.getElementById("searchByMajor").style.display = "none";
-            document.getElementById("searchByUniversity").style.display = "block";
+        // ترتيب النتائج تصاعديًا حسب السعر
+        results.sort((a, b) => b.price - a.price);
+
+
+        if (results.length > 0) {
+            universityList.style.display = "block"; // إظهار القائمة
+
+            results.forEach(result => {
+                let div = document.createElement("div");
+                div.style.padding = "10px";
+                div.style.border = "1px solid #ccc";
+                div.style.margin = "5px 0";
+                div.style.borderRadius = "5px";
+                div.innerHTML = `<strong>${result.university}</strong>: ${result.name} (${result.language}) - <span style="color: green;">${result.price} $</span>`;
+                universityList.appendChild(div);
+            });
+        } else {
+            universityList.innerHTML = "<div style='padding: 10px; text-align: center;'>لم يتم العثور على نتائج</div>";
+            universityList.style.display = "block"; // إظهار القائمة حتى لو كانت فارغة
         }
+    }
 
-        // تعبئة قائمة الدول عند تحميل الصفحة
-        window.onload = function () {
-            populateCountries();
-            populateCountriesForUniversitySearch();
-        };
+    // إظهار البحث عن التخصص
+    function showSearchByMajor() {
+        document.getElementById("searchByMajor").style.display = "block";
+        document.getElementById("searchByUniversity").style.display = "none";
+    }
 
-        // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
-        document.getElementById("language").addEventListener("change", enableSearchMajor);
+    // إظهار البحث عن الجامعة
+    function showSearchByUniversity() {
+        document.getElementById("searchByMajor").style.display = "none";
+        document.getElementById("searchByUniversity").style.display = "block";
+    }
 
-        window.onload = function () {
-            populateCountries();
-            populateCountriesForUniversitySearch();
-            
-            // تفعيل حقول البحث عند التحميل
-            document.getElementById("searchMajor").disabled = false;
-            document.getElementById("majorUniversity").disabled = false;
-        };
+    // تعبئة قائمة الدول عند تحميل الصفحة
+    window.onload = function () {
+        populateCountries();
+        populateCountriesForUniversitySearch();
+    };
 
-        // مسح محتوى البحث عن التخصص
-        function clearSearch() {
-            document.getElementById("searchMajor").value = ""; // مسح النص
-            document.getElementById("suggestions").style.display = "none"; // إخفاء الاقتراحات
-            document.getElementById("price").innerHTML = ""; // مسح السعر المعروض
-        }
+    // تفعيل حقل البحث عند اختيار اللغة (البحث عن التخصص)
+    document.getElementById("language").addEventListener("change", enableSearchMajor);
 
-        // مسح محتوى البحث عن الجامعة
-        function clearUniversitySearch() {
-            document.getElementById("majorUniversity").value = ""; // مسح النص
-        }
+    window.onload = function () {
+        populateCountries();
+        populateCountriesForUniversitySearch();
+        
+        // تفعيل حقول البحث عند التحميل
+        document.getElementById("searchMajor").disabled = false;
+        document.getElementById("majorUniversity").disabled = false;
+    };
+
+    // مسح محتوى البحث عن التخصص
+    function clearSearch() {
+        document.getElementById("searchMajor").value = ""; // مسح النص
+        document.getElementById("suggestions").style.display = "none"; // إخفاء الاقتراحات
+        document.getElementById("price").innerHTML = ""; // مسح السعر المعروض
+    }
+
+    // مسح محتوى البحث عن الجامعة
+    function clearUniversitySearch() {
+        document.getElementById("majorUniversity").value = ""; // مسح النص
+    }
 </script>
 </body>
 </html>
