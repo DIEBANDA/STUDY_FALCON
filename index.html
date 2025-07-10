@@ -522,7 +522,6 @@ img {
     </style>
 </head>
 <body>
-
 <!-- زرين للتبديل بين البحث عن التخصص والبحث عن الجامعة -->
 <div class="button-container">
     <button onclick="showSearchByMajor()">البحث عن تخصص</button>
@@ -546,14 +545,19 @@ img {
             <option value="Master">Master</option>
             <option value="Doctorate">Doctorate</option>
             <option value="Associate">Associate</option>
+            <option value="Master With Thesis">Master With Thesis</option>
         </select>
     </div>
 
     <!-- اختيار الجامعة -->
     <div class="container">
-        <select id="university" onchange="updateLanguageOptions()" disabled>
-            <option value="">-- اختر الجامعة --</option>
-        </select>
+        <div class="search-container" style="position: relative;">
+            <input type="text" id="university" placeholder="اكتب اسم الجامعة" oninput="searchUniversityInput()" onfocus="toggleUniversityIcon()" disabled>
+            <span id="universityIcon" class="clear-btn" onclick="universityIconAction()">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline;vertical-align:middle;"><path d="M5 8L10 13L15 8" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div id="universitySuggestions"></div>
+        </div>
     </div>
 
     <!-- اختيار اللغة -->
